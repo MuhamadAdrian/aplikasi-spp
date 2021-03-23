@@ -1,0 +1,182 @@
+<template>
+	<div class="p-4 mt-4">
+		<div v-if="$page.props.auth.user.level == 'admin'">
+			<NavLink
+				:href="route('dashboard')"
+				:active="route().current('dashboard')"
+				popup-text="Dashboard"
+				:is-sidebar-hidden="isSidebarHidden"
+			>
+				<icon name="dashboard-icon"></icon>
+				<fade-slide>
+					<span v-if="!hideText" class="whitespace-nowrap">
+						Dashboard</span
+					>
+				</fade-slide>
+			</NavLink>
+
+			<NavLink
+				:href="route('siswa')"
+				:active="
+					route().current('siswa') ||
+					route().current('siswa.tambah') ||
+					route().current('data-siswa.edit')
+				"
+				popup-text="Data Siswa"
+				:is-sidebar-hidden="isSidebarHidden"
+			>
+				<icon name="siswa-icon"></icon>
+				<fade-slide>
+					<span v-if="!hideText" class="whitespace-nowrap">
+						Data Siswa
+					</span>
+				</fade-slide>
+			</NavLink>
+
+			<NavLink
+				:href="route('kelas')"
+				:active="
+					route().current('kelas') ||
+					route().current('kelas.tambah') ||
+					route().current('data-kelas.edit')
+				"
+				popup-text="Data Kelas"
+				:is-sidebar-hidden="isSidebarHidden"
+			>
+				<icon name="kelas-icon"></icon>
+				<fade-slide>
+					<span v-if="!hideText" class="whitespace-nowrap">
+						Data Kelas
+					</span>
+				</fade-slide>
+			</NavLink>
+
+			<NavLink
+				:href="route('petugas')"
+				:active="route().current('petugas')"
+				popup-text="Data Petugas"
+				:is-sidebar-hidden="isSidebarHidden"
+			>
+				<icon name="petugas-icon"></icon>
+				<fade-slide>
+					<span v-if="!hideText" class="whitespace-nowrap">
+						Data Petugas
+					</span>
+				</fade-slide>
+			</NavLink>
+
+			<NavLink
+				:href="route('spp')"
+				:active="route().current('spp')"
+				popup-text="Data Spp"
+				:is-sidebar-hidden="isSidebarHidden"
+			>
+				<icon name="spp-icon"></icon>
+				<fade-slide>
+					<span v-if="!hideText" class="whitespace-nowrap">
+						Data Spp
+					</span>
+				</fade-slide>
+			</NavLink>
+
+			<NavLink
+				:is-sidebar-hidden="isSidebarHidden"
+				:href="route('pembayaran')"
+				:active="route().current('pembayaran')"
+				popup-text="Entri Transaksi"
+			>
+				<icon name="entri-icon"></icon>
+				<fade-slide>
+					<span v-if="!hideText" class="whitespace-nowrap">
+						Entri Transaksi
+					</span>
+				</fade-slide>
+			</NavLink>
+			<NavLink
+				:href="route('histori')"
+				:active="route().current('histori')"
+				popup-text="Histori Pembayaran"
+				:is-sidebar-hidden="isSidebarHidden"
+			>
+				<icon name="histori-icon"></icon>
+				<fade-slide>
+					<span v-if="!hideText" class="whitespace-nowrap">
+						Histori Pembayaran
+					</span>
+				</fade-slide>
+			</NavLink>
+			<NavLink
+				v-if="$page.props.auth.user.level == 'admin'"
+				:href="route('laporan')"
+				:active="route().current('laporan')"
+				popup-text="Generate Laporan"
+				:is-sidebar-hidden="isSidebarHidden"
+			>
+				<icon name="print-icon"></icon>
+				<fade-slide>
+					<span v-if="!hideText" class="whitespace-nowrap">
+						Generate Laporan
+					</span>
+				</fade-slide>
+			</NavLink>
+		</div>
+		<div v-else-if="$page.props.auth.user.level == 'petugas'">
+			<NavLink
+				:is-sidebar-hidden="isSidebarHidden"
+				:href="route('pembayaran')"
+				:active="route().current('pembayaran')"
+				popup-text="Entri Transaksi"
+			>
+				<icon name="entri-icon"></icon>
+				<fade-slide>
+					<span v-if="!hideText" class="whitespace-nowrap">
+						Entri Transaksi
+					</span>
+				</fade-slide>
+			</NavLink>
+			<NavLink
+				:href="route('histori')"
+				:active="route().current('histori')"
+				popup-text="Histori Pembayaran"
+				:is-sidebar-hidden="isSidebarHidden"
+			>
+				<icon name="histori-icon"></icon>
+				<fade-slide>
+					<span v-if="!hideText" class="whitespace-nowrap">
+						Histori Pembayaran
+					</span>
+				</fade-slide>
+			</NavLink>
+		</div>
+		<div v-else>
+			<NavLink
+				:href="route('histori')"
+				:active="route().current('histori')"
+				popup-text="Histori Pembayaran"
+				:is-sidebar-hidden="isSidebarHidden"
+			>
+				<icon name="histori-icon"></icon>
+				<fade-slide>
+					<span v-if="!hideText" class="whitespace-nowrap">
+						Histori Pembayaran
+					</span>
+				</fade-slide>
+			</NavLink>
+		</div>
+	</div>
+</template>
+
+<script>
+import NavLink from "@/Components/NavLink";
+import Icon from "@/Components/Icon";
+import FadeSlide from "@/Components/FadeSlide";
+
+export default {
+	props: ["hideText", "isSidebarHidden"],
+	components: {
+		NavLink,
+		Icon,
+		FadeSlide,
+	},
+};
+</script>
