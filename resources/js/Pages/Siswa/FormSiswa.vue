@@ -101,6 +101,7 @@
 			<div class="mt-4">
 				<input-label for="kelas" value="Kelas" />
 				<select
+					:disabled="id_kelas"
 					required
 					v-model="form.id_kelas"
 					:class="{
@@ -108,10 +109,20 @@
 					}"
 					class="w-full block mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
 				>
-					<option selected disabled hidden :value="null">
+					<option
+						:selected="id_kelas == null"
+						disabled
+						hidden
+						:value="null"
+					>
 						Pilih Kelas
 					</option>
-					<option :value="k.id" v-for="k in kelas" :key="k.id">
+					<option
+						:selected="id_kelas == k.id"
+						:value="k.id"
+						v-for="k in kelas"
+						:key="k.id"
+					>
 						{{ k.nama_kelas }}
 					</option>
 				</select>
@@ -200,6 +211,10 @@ export default {
 		},
 		kelas: Array,
 		spp: Array,
+		id_kelas: {
+			default: null,
+			type: Number,
+		},
 	},
 
 	data() {
@@ -228,7 +243,9 @@ export default {
 	},
 
 	mounted() {
-		console.log(this.edit + " " + this.data);
+		if (this.id_kelas) {
+			this.form.id_kelas = this.id_kelas;
+		}
 	},
 };
 </script>

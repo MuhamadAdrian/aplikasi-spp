@@ -38,7 +38,8 @@
 				:active="
 					route().current('kelas') ||
 					route().current('kelas.tambah') ||
-					route().current('data-kelas.edit')
+					route().current('data-kelas.edit') ||
+					route().current('data-kelas.show')
 				"
 				popup-text="Data Kelas"
 				:is-sidebar-hidden="isSidebarHidden"

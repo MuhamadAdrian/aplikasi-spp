@@ -45,11 +45,12 @@ class SiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         return Inertia::render('Siswa/Tambah', [
             'kelas' => $this->kelas,
-            'spp' => $this->spp
+            'spp' => $this->spp,
+            'id_kelas' => $request->id_kelas ? $request->id_kelas : null,
         ]);
     }
 
@@ -82,10 +83,11 @@ class SiswaController extends Controller
                 'nisn_siswa' => $request->nisn,
                 'role' => 'siswa'
             ]);
-            return Redirect::route('siswa')->with('toast', [
+            dd($request);
+            /*return Redirect::route('siswa')->with('toast', [
                 'message' => 'Data dan akun siswa berhasil ditambahkan', 
                 'success' => true
-            ]);
+            ]);*/
         }
         return Redirect::route('siswa.tambah')->with('toast', [
             'message' => 'Maaf terjadi kesalahan', 

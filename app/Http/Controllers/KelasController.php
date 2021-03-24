@@ -34,10 +34,9 @@ class KelasController extends Controller
      */
     public function create(Request $request)
     {
-        if ($request->id_kelas) {
-            dd($request->id_kelas);
-        }
-        return Inertia::render('Kelas/Tambah');
+        return Inertia::render('Kelas/Tambah', [
+            'id_kelas' => $request->id_kelas
+        ]);
     }
 
     /**
@@ -75,15 +74,16 @@ class KelasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
+        $detail = Kelas::with('siswa')->find($id);
 
-        $detail = Kelas::where('id', $id)->first();
-        $detail->setRelation('siswa', $detail->siswa()->with('kelas')->paginate(5));
-
+        $detail->setRelation('siswa', $detail->siswa()->with('kelas')->where('nama', 'LIKE', '%'.$request->search.'%')->paginate(5));
+        
         return Inertia::render('Kelas/Detail', [
             'detail' => $detail
         ]);
+
 
     }
     

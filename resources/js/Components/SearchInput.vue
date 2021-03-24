@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { debounce } from "lodash";
+import debounce from "lodash/debounce";
 import Icon from "@/Components/Icon";
 export default {
 	components: {
@@ -31,6 +31,7 @@ export default {
 		placeholder: {
 			default: "Cari Nama",
 		},
+		params: null,
 	},
 
 	data() {
@@ -42,9 +43,9 @@ export default {
 	methods: {
 		searchData: debounce(function () {
 			this.$inertia.get(
-				this.route(this.route().current()),
+				this.route(this.route().current(), this.params),
 				{ search: this.search },
-				{ preserveState: true, replace: true }
+				{ preserveState: true, replace: true, preserveScroll: true }
 			);
 		}, 200),
 

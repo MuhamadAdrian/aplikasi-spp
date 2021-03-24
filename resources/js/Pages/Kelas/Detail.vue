@@ -15,7 +15,7 @@
 				</p>
 			</div>
 
-			<h2 class="text-sm font-semibold mt-5">
+			<h2 class="text-sm font-semibold mt-10">
 				Data Siswa {{ detail.nama_kelas }}
 			</h2>
 			<div class="bg-white p-5 rounded-md shadow-md mt-5">
@@ -25,7 +25,7 @@
 					<add-button
 						:href="route('siswa.tambah', { id_kelas: detail.id })"
 					></add-button>
-					<search-input></search-input>
+					<search-input :params="detail.id"></search-input>
 				</div>
 				<table-siswa :data="detail.siswa"></table-siswa>
 				<pagination :data="detail.siswa"></pagination>
