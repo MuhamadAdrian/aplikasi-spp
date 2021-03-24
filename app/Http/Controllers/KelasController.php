@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\KelasStoreRequest;
 use App\Http\Requests\KelasUpdateRequest;
 use App\Models\Kelas;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -31,8 +32,11 @@ class KelasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        if ($request->id_kelas) {
+            dd($request->id_kelas);
+        }
         return Inertia::render('Kelas/Tambah');
     }
 
@@ -73,9 +77,14 @@ class KelasController extends Controller
      */
     public function show($id)
     {
+
+        $detail = Kelas::where('id', $id)->first();
+        $detail->setRelation('siswa', $detail->siswa()->with('kelas')->paginate(5));
+
         return Inertia::render('Kelas/Detail', [
-            'detail' => Kelas::findOrFail($id)
+            'detail' => $detail
         ]);
+
     }
     
     /**

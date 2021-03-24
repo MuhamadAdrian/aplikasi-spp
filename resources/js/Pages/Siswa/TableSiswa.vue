@@ -52,9 +52,5 @@ export default {
 			this.$inertia.delete(this.route("data-siswa.destroy", nisn));
 		},
 	},
-
-	mounted() {
-		console.log(this.data);
-	},
 };
 </script>

@@ -21,4 +21,9 @@ class Kelas extends Model
         'max' => ':attribute terlalu panjang',
         'string' => ':attribute harus berupa string atau kalimat atau kata',
     ];
+
+    public function siswa()
+    {
+        return $this->hasMany(Siswa::class, 'id_kelas', 'id');
+    }
 }

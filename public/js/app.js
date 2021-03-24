@@ -17637,9 +17637,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Layouts_MainLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/MainLayout */ "./resources/js/Layouts/MainLayout.vue");
+/* harmony import */ var _Pages_Siswa_TableSiswa__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Pages/Siswa/TableSiswa */ "./resources/js/Pages/Siswa/TableSiswa.vue");
+/* harmony import */ var _Components_Pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/Pagination */ "./resources/js/Components/Pagination.vue");
+/* harmony import */ var _Components_AddButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/AddButton */ "./resources/js/Components/AddButton.vue");
+/* harmony import */ var _Components_SearchInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/SearchInput */ "./resources/js/Components/SearchInput.vue");
+
+
+
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  layout: _Layouts_MainLayout__WEBPACK_IMPORTED_MODULE_0__.default
+  layout: _Layouts_MainLayout__WEBPACK_IMPORTED_MODULE_0__.default,
+  components: {
+    TableSiswa: _Pages_Siswa_TableSiswa__WEBPACK_IMPORTED_MODULE_1__.default,
+    Pagination: _Components_Pagination__WEBPACK_IMPORTED_MODULE_2__.default,
+    AddButton: _Components_AddButton__WEBPACK_IMPORTED_MODULE_3__.default,
+    SearchInput: _Components_SearchInput__WEBPACK_IMPORTED_MODULE_4__.default
+  },
+  props: ["detail"]
 });
 
 /***/ }),
@@ -18048,9 +18063,6 @@ __webpack_require__.r(__webpack_exports__);
     deleteData: function deleteData(nisn) {
       this.$inertia["delete"](this.route("data-siswa.destroy", nisn));
     }
-  },
-  mounted: function mounted() {
-    console.log(this.data);
   }
 });
 
@@ -20716,17 +20728,67 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "py-12"
 };
-
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+var _hoisted_2 = {
   "class": "max-w-7xl mx-auto sm:px-6 lg:px-8"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", {
+};
+var _hoisted_3 = {
   "class": "text-2xl font-bold"
-}, "Detail Kelas")], -1
+};
+var _hoisted_4 = {
+  "class": "text-xl font-semibold"
+};
+var _hoisted_5 = {
+  "class": "bg-indigo-400 text-white p-4 rounded-md shadow mt-5 inline-block text-center"
+};
+
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, "Jumlah Siswa", -1
 /* HOISTED */
 );
 
+var _hoisted_7 = {
+  "class": "text-xl font-semibold"
+};
+var _hoisted_8 = {
+  "class": "text-sm font-semibold mt-5"
+};
+var _hoisted_9 = {
+  "class": "bg-white p-5 rounded-md shadow-md mt-5"
+};
+var _hoisted_10 = {
+  "class": "flex flex-col md:flex-row md:items-center justify-between mb-3"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [_hoisted_2]);
+  var _component_add_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("add-button");
+
+  var _component_search_input = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("search-input");
+
+  var _component_table_siswa = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("table-siswa");
+
+  var _component_pagination = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("pagination");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h1", _hoisted_3, "Kelas " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.detail.nama_kelas), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.detail.kompetensi_keahlian), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.detail.siswa.data.length), 1
+  /* TEXT */
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("h2", _hoisted_8, " Data Siswa " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.detail.nama_kelas), 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_add_button, {
+    href: _ctx.route('siswa.tambah', {
+      id_kelas: $props.detail.id
+    })
+  }, null, 8
+  /* PROPS */
+  , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_search_input)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_table_siswa, {
+    data: $props.detail.siswa
+  }, null, 8
+  /* PROPS */
+  , ["data"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_pagination, {
+    data: $props.detail.siswa
+  }, null, 8
+  /* PROPS */
+  , ["data"])])])]);
 }
 
 /***/ }),
@@ -20941,7 +21003,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 );
 
 var _hoisted_4 = {
-  "class": "main-content bg-white p-5 rounded-md shadow-md mt-5"
+  "class": "bg-white p-5 rounded-md shadow-md mt-5"
 };
 var _hoisted_5 = {
   "class": "flex flex-col md:flex-row md:items-center justify-between mb-3"
