@@ -54,7 +54,10 @@ Route::middleware(['auth', 'verified', 'authadmin'])->group(function () {
     
     Route::get('/data-petugas', [PetugasController::class, 'index'])->name('petugas');
     
-    Route::get('/data-spp', [SppController::class, 'index'])->name('spp');
+    Route::resource('data-spp', SppController::class)->names([
+        'index' => 'spp',
+        'create' => 'spp.tambah'
+    ]);
     
     Route::get('/entri-transaksi-pembayaran', [PembayaranController::class, 'index'])->name('pembayaran');
     

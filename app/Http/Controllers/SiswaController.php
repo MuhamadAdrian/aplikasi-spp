@@ -83,11 +83,10 @@ class SiswaController extends Controller
                 'nisn_siswa' => $request->nisn,
                 'role' => 'siswa'
             ]);
-            dd($request);
-            /*return Redirect::route('siswa')->with('toast', [
+            return Redirect::route('siswa')->with('toast', [
                 'message' => 'Data dan akun siswa berhasil ditambahkan', 
                 'success' => true
-            ]);*/
+            ]);
         }
         return Redirect::route('siswa.tambah')->with('toast', [
             'message' => 'Maaf terjadi kesalahan', 
@@ -109,7 +108,7 @@ class SiswaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int  
      * @return \Illuminate\Http\Response
      */
     public function edit($nisn)
