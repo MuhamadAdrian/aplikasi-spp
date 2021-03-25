@@ -34,16 +34,11 @@ import SearchInput from "@/Components/SearchInput";
 export default {
 	layout: MainLayout,
 	components: {
-		MainLayout,
 		Pagination,
 		TableData,
 		AddButton,
 		SearchInput,
 	},
 	props: ["siswa"],
-
-	mounted() {
-		console.log(this.route());
-	},
 };
 </script>

@@ -235,9 +235,13 @@ export default {
 	methods: {
 		submit() {
 			if (this.edit && this.data) {
-				this.form.put(this.route("data-siswa.update", this.data.nisn));
+				this.form.put(this.route("data-siswa.update", this.data.nisn), {
+					preserveScroll: true,
+				});
 			} else {
-				this.form.post(this.route("siswa.store"));
+				this.form.post(this.route("siswa.store"), {
+					preserveScroll: true,
+				});
 			}
 		},
 	},

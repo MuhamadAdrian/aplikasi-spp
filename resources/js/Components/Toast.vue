@@ -31,7 +31,7 @@ export default {
 		toast(val) {
 			if (val) {
 				setTimeout(() => {
-					this.toast.message = null;
+					this.$page.props.toast = null;
 				}, 2000);
 			}
 		},

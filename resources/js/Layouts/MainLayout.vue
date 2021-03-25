@@ -23,8 +23,8 @@
 			:class="[hideSideBar ? 'md:ml-72 ml-4/5' : 'md:ml-24 ml-0']"
 		>
 			<slot></slot>
+			<toast :toast="$page.props.toast"></toast>
 		</main>
-		<toast :toast="$page.props.toast"></toast>
 	</div>
 </template>
 

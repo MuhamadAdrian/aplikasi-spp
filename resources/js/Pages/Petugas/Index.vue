@@ -36,7 +36,6 @@ import SearchInput from "@/Components/SearchInput";
 export default {
 	layout: MainLayout,
 	components: {
-		MainLayout,
 		Pagination,
 		TableData,
 		AddButton,

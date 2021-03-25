@@ -17,8 +17,5 @@ import MainLayout from "@/Layouts/MainLayout";
 
 export default {
 	layout: MainLayout,
-	components: {
-		MainLayout,
-	},
 };
 </script>

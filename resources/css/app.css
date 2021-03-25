@@ -26,7 +26,7 @@ input, button, textarea{
 }
 
 .fade-up-enter-from, .fade-up-leave-to{
-    @apply opacity-0 transform translate-y-10
+    @apply opacity-0 transform translate-x-10
 }
 
 

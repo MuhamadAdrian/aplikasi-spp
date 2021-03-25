@@ -31632,7 +31632,7 @@ input:focus, button:focus, textarea:focus {
   --tw-scale-x: 1;
   --tw-scale-y: 1;
   transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-  --tw-translate-y: 2.5rem
+  --tw-translate-x: 2.5rem
 }
 
 @media (min-width: 640px) {
