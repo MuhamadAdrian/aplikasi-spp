@@ -16,4 +16,16 @@ class Petugas extends Model
     ];
 
     public $timestamps = false;
+
+    public const message = [
+        'required' => ':attribute tidak boleh kosong',
+        'unique' => ':attribute sudah terdaftar, gunakan nilai lain',
+        'max' => ':attribute terlalu panjang',
+        'string' => ':attribute harus berupa string atau kalimat atau kata',
+    ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id_petugas', 'id');
+    }
 }

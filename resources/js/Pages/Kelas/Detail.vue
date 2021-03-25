@@ -12,7 +12,7 @@
 				</div>
 
 				<div
-					class="bg-white text-gray-600 px-5 py-4 rounded-md text-center flex items-center"
+					class="bg-white text-gray-600 px-8 py-4 rounded-md text-center flex items-center"
 				>
 					<icon name="big-siswa-icon"></icon>
 					<div class="text ml-3">

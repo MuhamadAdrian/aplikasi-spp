@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\KelasStoreRequest;
 use App\Http\Requests\KelasUpdateRequest;
 use App\Models\Kelas;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;

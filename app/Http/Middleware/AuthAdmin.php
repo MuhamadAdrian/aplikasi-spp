@@ -70,7 +70,11 @@ class AuthAdmin
                 'data-spp.destroy',
                 'data-spp.edit',
                 'data-spp.update',
-                'data-spp.show',
+                'petugas.tambah',
+                'data-petugas.store',
+                'data-petugas.destroy',
+                'data-petugas.edit',
+                'data-petugas.update',
             ],
 
             'petugas' => [

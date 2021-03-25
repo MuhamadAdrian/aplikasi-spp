@@ -7,9 +7,9 @@
 				popup-text="Dashboard"
 				:is-sidebar-hidden="isSidebarHidden"
 			>
-				<icon name="dashboard-icon"></icon>
+				<icon class="ml-1" name="dashboard-icon"></icon>
 				<fade-slide>
-					<span v-if="!hideText" class="whitespace-nowrap">
+					<span v-if="!hideText" class="ml-4 whitespace-nowrap">
 						Dashboard</span
 					>
 				</fade-slide>
@@ -25,9 +25,9 @@
 				popup-text="Data Siswa"
 				:is-sidebar-hidden="isSidebarHidden"
 			>
-				<icon name="siswa-icon"></icon>
+				<icon class="ml-1" name="siswa-icon"></icon>
 				<fade-slide>
-					<span v-if="!hideText" class="whitespace-nowrap">
+					<span v-if="!hideText" class="ml-4 whitespace-nowrap">
 						Data Siswa
 					</span>
 				</fade-slide>
@@ -44,9 +44,9 @@
 				popup-text="Data Kelas"
 				:is-sidebar-hidden="isSidebarHidden"
 			>
-				<icon name="kelas-icon"></icon>
+				<icon class="ml-1" name="kelas-icon"></icon>
 				<fade-slide>
-					<span v-if="!hideText" class="whitespace-nowrap">
+					<span v-if="!hideText" class="ml-4 whitespace-nowrap">
 						Data Kelas
 					</span>
 				</fade-slide>
@@ -54,13 +54,17 @@
 
 			<NavLink
 				:href="route('petugas')"
-				:active="route().current('petugas')"
+				:active="
+					route().current('petugas') ||
+					route().current('petugas.tambah') ||
+					route().current('data-petugas.edit')
+				"
 				popup-text="Data Petugas"
 				:is-sidebar-hidden="isSidebarHidden"
 			>
-				<icon name="petugas-icon"></icon>
+				<icon class="ml-1" name="petugas-icon"></icon>
 				<fade-slide>
-					<span v-if="!hideText" class="whitespace-nowrap">
+					<span v-if="!hideText" class="ml-4 whitespace-nowrap">
 						Data Petugas
 					</span>
 				</fade-slide>
@@ -76,9 +80,9 @@
 				popup-text="Data Spp"
 				:is-sidebar-hidden="isSidebarHidden"
 			>
-				<icon name="spp-icon"></icon>
+				<icon class="ml-1" name="spp-icon"></icon>
 				<fade-slide>
-					<span v-if="!hideText" class="whitespace-nowrap">
+					<span v-if="!hideText" class="ml-4 whitespace-nowrap">
 						Data Spp
 					</span>
 				</fade-slide>
@@ -90,9 +94,9 @@
 				:active="route().current('pembayaran')"
 				popup-text="Entri Transaksi"
 			>
-				<icon name="entri-icon"></icon>
+				<icon class="ml-1" name="entri-icon"></icon>
 				<fade-slide>
-					<span v-if="!hideText" class="whitespace-nowrap">
+					<span v-if="!hideText" class="ml-4 whitespace-nowrap">
 						Entri Transaksi
 					</span>
 				</fade-slide>
@@ -103,9 +107,9 @@
 				popup-text="Histori Pembayaran"
 				:is-sidebar-hidden="isSidebarHidden"
 			>
-				<icon name="histori-icon"></icon>
+				<icon class="ml-1" name="histori-icon"></icon>
 				<fade-slide>
-					<span v-if="!hideText" class="whitespace-nowrap">
+					<span v-if="!hideText" class="ml-4 whitespace-nowrap">
 						Histori Pembayaran
 					</span>
 				</fade-slide>
@@ -117,9 +121,9 @@
 				popup-text="Generate Laporan"
 				:is-sidebar-hidden="isSidebarHidden"
 			>
-				<icon name="print-icon"></icon>
+				<icon class="ml-1" name="print-icon"></icon>
 				<fade-slide>
-					<span v-if="!hideText" class="whitespace-nowrap">
+					<span v-if="!hideText" class="ml-4 whitespace-nowrap">
 						Generate Laporan
 					</span>
 				</fade-slide>
@@ -132,9 +136,9 @@
 				:active="route().current('pembayaran')"
 				popup-text="Entri Transaksi"
 			>
-				<icon name="entri-icon"></icon>
+				<icon class="ml-1" name="entri-icon"></icon>
 				<fade-slide>
-					<span v-if="!hideText" class="whitespace-nowrap">
+					<span v-if="!hideText" class="ml-4 whitespace-nowrap">
 						Entri Transaksi
 					</span>
 				</fade-slide>
@@ -145,9 +149,9 @@
 				popup-text="Histori Pembayaran"
 				:is-sidebar-hidden="isSidebarHidden"
 			>
-				<icon name="histori-icon"></icon>
+				<icon class="ml-1" name="histori-icon"></icon>
 				<fade-slide>
-					<span v-if="!hideText" class="whitespace-nowrap">
+					<span v-if="!hideText" class="ml-4 whitespace-nowrap">
 						Histori Pembayaran
 					</span>
 				</fade-slide>
@@ -160,9 +164,9 @@
 				popup-text="Histori Pembayaran"
 				:is-sidebar-hidden="isSidebarHidden"
 			>
-				<icon name="histori-icon"></icon>
+				<icon class="ml-1" name="histori-icon"></icon>
 				<fade-slide>
-					<span v-if="!hideText" class="whitespace-nowrap">
+					<span v-if="!hideText" class="ml-4 whitespace-nowrap">
 						Histori Pembayaran
 					</span>
 				</fade-slide>

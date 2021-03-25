@@ -41,5 +41,9 @@ export default {
 		SearchInput,
 	},
 	props: ["siswa"],
+
+	mounted() {
+		console.log(this.route());
+	},
 };
 </script>
