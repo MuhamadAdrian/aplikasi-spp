@@ -68,7 +68,11 @@
 
 			<NavLink
 				:href="route('spp')"
-				:active="route().current('spp')"
+				:active="
+					route().current('spp') ||
+					route().current('spp.tambah') ||
+					route().current('data-spp.edit')
+				"
 				popup-text="Data Spp"
 				:is-sidebar-hidden="isSidebarHidden"
 			>

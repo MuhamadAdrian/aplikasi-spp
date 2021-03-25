@@ -2,10 +2,10 @@
 	<form @submit.prevent="submit()">
 		<div class="flex items-center justify-between mb-5">
 			<h1 v-if="edit" class="text-lg font-bold">
-				<span>Edit Data Kelas</span>
+				<span>Edit Data Spp</span>
 			</h1>
 			<h1 v-else class="text-lg font-bold">
-				<span>Tambah Data Kelas</span>
+				<span>Tambah Data Spp</span>
 			</h1>
 			<form-button
 				class="ml-4 bg-indigo-400"
@@ -28,42 +28,39 @@
 		</div>
 		<div class="grid grid-cols-2 md:gap-5 gap-3">
 			<div class="mt-4">
-				<input-label for="nama_kelas" value="Nama Kelas" />
+				<input-label for="tahun" value="Tahun" />
 				<form-input
-					id="nama_kelas"
-					type="text"
+					id="tahun"
+					type="number"
 					class="mt-1 block w-full"
-					:class="{ 'border-red-500': form.errors.nama_kelas }"
-					v-model="form.nama_kelas"
+					:class="{ 'border-red-500': form.errors.tahun }"
+					v-model="form.tahun"
 					required
 					autofocus
-					autocomplete="nama_kelas"
+					autocomplete="tahun"
 				/>
 				<form-error
 					class="mt-3"
-					:message="form.errors.nama_kelas"
+					:message="form.errors.tahun"
 				></form-error>
 			</div>
 
 			<div class="mt-4">
-				<input-label
-					for="kompetensi_keahlian"
-					value="Kompetensi Keahlian"
-				/>
+				<input-label for="nominal" value="Nominal" />
 				<form-input
-					id="kompetensi_keahlian"
-					type="text"
+					id="nominal"
+					type="number"
 					class="mt-1 block w-full"
 					:class="{
-						'border-red-500': form.errors.kompetensi_keahlian,
+						'border-red-500': form.errors.nominal,
 					}"
-					v-model="form.kompetensi_keahlian"
+					v-model="form.nominal"
 					required
-					autocomplete="kompetensi_keahlian"
+					autocomplete="nominal"
 				/>
 				<form-error
 					class="mt-3"
-					:message="form.errors.kompetensi_keahlian"
+					:message="form.errors.nominal"
 				></form-error>
 			</div>
 		</div>
@@ -102,10 +99,8 @@ export default {
 	data() {
 		return {
 			form: this.$inertia.form({
-				nama_kelas: this.data ? this.data.nama_kelas : "",
-				kompetensi_keahlian: this.data
-					? this.data.kompetensi_keahlian
-					: "",
+				tahun: this.data ? this.data.tahun : null,
+				nominal: this.data ? this.data.nominal : null,
 			}),
 		};
 	},
@@ -113,9 +108,10 @@ export default {
 	methods: {
 		submit() {
 			if (this.edit && this.data) {
-				this.form.put(this.route("data-kelas.update", this.data.id));
+				//console.log(this.data);
+				this.form.put(this.route("data-spp.update", this.data.id));
 			} else {
-				this.form.post(this.route("data-kelas.store"));
+				this.form.post(this.route("data-spp.store"));
 			}
 		},
 	},

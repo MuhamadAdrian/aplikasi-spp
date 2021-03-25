@@ -65,6 +65,12 @@ class AuthAdmin
                 'data-kelas.edit',
                 'data-kelas.update',
                 'data-kelas.show',
+                'spp.tambah',
+                'data-spp.store',
+                'data-spp.destroy',
+                'data-spp.edit',
+                'data-spp.update',
+                'data-spp.show',
             ],
 
             'petugas' => [

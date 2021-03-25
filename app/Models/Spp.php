@@ -16,4 +16,10 @@ class Spp extends Model
     ];
 
     public $timestamps = false;
+
+    public const message = [
+        'required' => ':attribute tidak boleh kosong',
+        'unique' => ':attribute sudah terdaftar, gunakan nilai lain',
+        'integer' => ':attribute harus berupa angka',
+    ];
 }

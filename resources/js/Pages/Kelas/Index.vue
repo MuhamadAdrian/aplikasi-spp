@@ -14,7 +14,7 @@
 						></search-input>
 					</div>
 					<!-- table -->
-					<table-kelas :data="kelas"></table-kelas>
+					<table-data :data="kelas"></table-data>
 					<pagination :data="kelas"></pagination>
 				</div>
 			</div>
@@ -25,7 +25,7 @@
 <script>
 import MainLayout from "@/Layouts/MainLayout";
 import Pagination from "@/Components/Pagination";
-import TableKelas from "@/Pages/Kelas/TableKelas";
+import TableData from "@/Pages/Kelas/TableData";
 import AddButton from "@/Components/AddButton";
 import SearchInput from "@/Components/SearchInput";
 
@@ -34,7 +34,7 @@ export default {
 	components: {
 		MainLayout,
 		Pagination,
-		TableKelas,
+		TableData,
 		AddButton,
 		SearchInput,
 	},

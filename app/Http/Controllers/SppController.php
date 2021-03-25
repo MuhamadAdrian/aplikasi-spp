@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\KelasStoreRequest;
-use App\Http\Requests\KelasUpdateRequest;
+use App\Http\Requests\SppStoreRequest;
+use App\Http\Requests\SppUpdateRequest;
 use App\Models\Spp;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -22,8 +21,8 @@ class SppController extends Controller
     {
         return Inertia::render('Spp/Index', [
             'spp' => Spp::when($request->search, function($query, $search){
-                $query->where('nama_kelas', 'LIKE', '%'.$search.'%');
-            })->paginate(5)
+                $query->where('tahun', 'LIKE', '%'.$search.'%');
+            })->orderBy('tahun', 'desc')->paginate(5)
         ]);
     }
 
@@ -45,7 +44,7 @@ class SppController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(KelasStoreRequest $request)
+    public function store(SppStoreRequest $request)
     {
         $request->validated();
 
@@ -107,10 +106,11 @@ class SppController extends Controller
          * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(KelasUpdateRequest $request, $id)
+    public function update(SppUpdateRequest $request, $id)
     {
         $request->validated();
 
+        //dd($request);
         $updated = Spp::where('id', $id)->update([
             'tahun' => $request->tahun,
             'nominal' => $request->nominal,
@@ -122,13 +122,11 @@ class SppController extends Controller
                 'success' => true
             ]);
         }
-
-        return Redirect::route('spp.edit', $id)->with('toast', [
-            'message' => 'Mohon maaf terjadi kesalahan, silahkan mencoba kembali', 
+            
+        return Redirect::route('data-spp.edit', $id) ->with('toast', [
+            'message' => 'Tidak ada data yang dirubah', 
             'success' => false
         ]);
-
-        
     }
     
     /**

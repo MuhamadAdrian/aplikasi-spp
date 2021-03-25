@@ -52,12 +52,12 @@ Route::middleware(['auth', 'verified', 'authadmin'])->group(function () {
         'create' => 'kelas.tambah'
     ]);
     
-    Route::get('/data-petugas', [PetugasController::class, 'index'])->name('petugas');
-    
     Route::resource('data-spp', SppController::class)->names([
         'index' => 'spp',
         'create' => 'spp.tambah'
     ]);
+
+    Route::get('/data-petugas', [PetugasController::class, 'index'])->name('petugas');
     
     Route::get('/entri-transaksi-pembayaran', [PembayaranController::class, 'index'])->name('pembayaran');
     

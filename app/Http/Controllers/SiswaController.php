@@ -35,7 +35,9 @@ class SiswaController extends Controller
     {
         return Inertia::render('Siswa/Index', [
             'siswa' => Siswa::when($request->search, function($query, $search){
-                $query->where('nama', 'LIKE', '%'.$search.'%');
+                $query->where('nama', 'LIKE', '%'.$search.'%')
+                ->orWhere('nisn', 'LIKE', '%'.$search.'%')
+                ->orWhere('nis', 'LIKE', '%'.$search.'%');
             })->with('kelas')->latest()->paginate(5)
         ]);
     }
@@ -157,7 +159,7 @@ class SiswaController extends Controller
         }
 
         return Redirect::route('data-siswa.edit', $this->siswa->nisn)->with('toast', [
-            'message' => 'Mohon maaf terjadi kesalahan, silahkan mencoba kembali', 
+            'message' => 'Tidak ada data yang dirubah', 
             'success' => false
         ]);
 

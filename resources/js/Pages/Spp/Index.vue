@@ -10,11 +10,11 @@
 					>
 						<add-button :href="route('spp.tambah')"></add-button>
 						<search-input
-							placeholder="Cari Nama Kelas, cont : 'rpl 1'"
+							placeholder="Cari tahun spp"
 						></search-input>
 					</div>
 					<!-- table -->
-					<table-kelas :data="spp"></table-kelas>
+					<table-data :data="spp"></table-data>
 					<pagination :data="spp"></pagination>
 				</div>
 			</div>
@@ -25,7 +25,7 @@
 <script>
 import MainLayout from "@/Layouts/MainLayout";
 import Pagination from "@/Components/Pagination";
-import TableKelas from "@/Pages/Kelas/TableKelas";
+import TableData from "@/Pages/Spp/TableData";
 import AddButton from "@/Components/AddButton";
 import SearchInput from "@/Components/SearchInput";
 
@@ -34,7 +34,7 @@ export default {
 	components: {
 		MainLayout,
 		Pagination,
-		TableKelas,
+		TableData,
 		AddButton,
 		SearchInput,
 	},

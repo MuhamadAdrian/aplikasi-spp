@@ -1,19 +1,28 @@
 <template>
 	<div class="py-12">
 		<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-			<h1 class="text-2xl font-bold">Kelas {{ detail.nama_kelas }}</h1>
-			<h2 class="text-xl font-semibold">
-				{{ detail.kompetensi_keahlian }}
-			</h2>
+			<header class="flex justify-between items-start">
+				<div class="title">
+					<h1 class="text-2xl font-bold">
+						Kelas {{ detail.nama_kelas }}
+					</h1>
+					<h2 class="text-xl font-semibold">
+						{{ detail.kompetensi_keahlian }}
+					</h2>
+				</div>
 
-			<div
-				class="bg-indigo-400 text-white p-4 rounded-md shadow mt-5 inline-block text-center"
-			>
-				<p>Jumlah Siswa</p>
-				<p class="text-xl font-semibold">
-					{{ detail.siswa.data.length }}
-				</p>
-			</div>
+				<div
+					class="bg-white text-gray-600 px-5 py-4 rounded-md text-center flex items-center"
+				>
+					<icon name="big-siswa-icon"></icon>
+					<div class="text ml-3">
+						<p class="text-sm">Jumlah Siswa</p>
+						<p class="text-2xl font-semibold text-indigo-400">
+							{{ jumlah_siswa }}
+						</p>
+					</div>
+				</div>
+			</header>
 
 			<h2 class="text-sm font-semibold mt-10">
 				Data Siswa {{ detail.nama_kelas }}
@@ -27,7 +36,7 @@
 					></add-button>
 					<search-input :params="detail.id"></search-input>
 				</div>
-				<table-siswa :data="detail.siswa"></table-siswa>
+				<table-data :data="detail.siswa"></table-data>
 				<pagination :data="detail.siswa"></pagination>
 			</div>
 		</div>
@@ -36,21 +45,23 @@
 
 <script>
 import MainLayout from "@/Layouts/MainLayout";
-import TableSiswa from "@/Pages/Siswa/TableSiswa";
+import TableData from "@/Pages/Siswa/TableData";
 import Pagination from "@/Components/Pagination";
 import AddButton from "@/Components/AddButton";
 import SearchInput from "@/Components/SearchInput";
+import Icon from "@/Components/Icon";
 
 export default {
 	layout: MainLayout,
 
 	components: {
-		TableSiswa,
+		TableData,
 		Pagination,
 		AddButton,
 		SearchInput,
+		Icon,
 	},
 
-	props: ["detail"],
+	props: ["detail", "jumlah_siswa"],
 };
 </script>

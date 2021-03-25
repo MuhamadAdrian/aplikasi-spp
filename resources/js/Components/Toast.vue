@@ -2,9 +2,13 @@
 	<fade-up>
 		<div
 			v-if="toast && toast.message"
-			class="fixed bottom-0 right-0 m-4 rounded-md bg-indigo-400 p-4 shadow-lg w-full max-w-sm flex items-center justify-center"
+			class="fixed top-0 right-0 m-4 rounded-md p-4 shadow-lg w-full max-w-sm flex items-center justify-center"
+			:class="[toast.success ? 'bg-indigo-400' : 'bg-red-400']"
 		>
-			<icon class="text-white mr-4" name="check-icon"></icon>
+			<icon
+				class="text-white mr-4"
+				:name="[toast.success ? 'check-icon' : 'x-icon']"
+			></icon>
 			<p class="text-base text-center text-white">
 				{{ toast.message }}
 			</p>
@@ -28,7 +32,7 @@ export default {
 			if (val) {
 				setTimeout(() => {
 					this.toast.message = null;
-				}, 3000);
+				}, 2000);
 			}
 		},
 	},

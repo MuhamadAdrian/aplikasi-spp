@@ -2,7 +2,7 @@
 	<div class="py-12">
 		<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 			<div class="bg-white md:p-10 p-4 rounded-md">
-				<form-data></form-data>
+				<form-data :edit="true" :data="data"></form-data>
 			</div>
 		</div>
 	</div>
@@ -10,12 +10,13 @@
 
 <script>
 import MainLayout from "@/Layouts/MainLayout";
-import FormData from "@/Pages/Kelas/FormData";
+import FormData from "@/Pages/Spp/FormData";
 
 export default {
 	layout: MainLayout,
 	components: {
 		FormData,
 	},
+	props: ["data"],
 };
 </script>

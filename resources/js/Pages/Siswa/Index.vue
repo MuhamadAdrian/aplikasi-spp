@@ -11,10 +11,12 @@
 						class="flex flex-col md:flex-row md:items-center justify-between mb-3"
 					>
 						<add-button :href="route('siswa.tambah')"></add-button>
-						<search-input></search-input>
+						<search-input
+							placeholder="Cari Nama / NISN / NIS"
+						></search-input>
 					</div>
 					<!-- table -->
-					<table-siswa :data="siswa"></table-siswa>
+					<table-data :data="siswa"></table-data>
 					<pagination :data="siswa"></pagination>
 				</div>
 			</div>
@@ -25,7 +27,7 @@
 <script>
 import MainLayout from "@/Layouts/MainLayout";
 import Pagination from "@/Components/Pagination";
-import TableSiswa from "@/Pages/Siswa/TableSiswa";
+import TableData from "@/Pages/Siswa/TableData";
 import AddButton from "@/Components/AddButton";
 import SearchInput from "@/Components/SearchInput";
 
@@ -34,7 +36,7 @@ export default {
 	components: {
 		MainLayout,
 		Pagination,
-		TableSiswa,
+		TableData,
 		AddButton,
 		SearchInput,
 	},

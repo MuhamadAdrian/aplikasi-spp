@@ -78,10 +78,22 @@ class KelasController extends Controller
     {
         $detail = Kelas::with('siswa')->find($id);
 
-        $detail->setRelation('siswa', $detail->siswa()->with('kelas')->where('nama', 'LIKE', '%'.$request->search.'%')->paginate(5));
+        if ($request->search) 
+        {
+            $detail->setRelation('siswa', 
+                $detail->siswa()->with('kelas')->where('nama', 'LIKE', '%'.$request->search.'%')
+                ->orWhere('nisn', 'LIKE', '%'.$request->search.'%')
+                ->orWhere('nis', 'LIKE', '%'.$request->search.'%')
+                ->paginate(5)
+            );
+        }
+        else{
+            $detail->setRelation('siswa', $detail->siswa()->with('kelas')->paginate(5));
+        }
         
         return Inertia::render('Kelas/Detail', [
-            'detail' => $detail
+            'detail' => $detail,
+            'jumlah_siswa' => $detail->siswa()->count()
         ]);
 
 
@@ -124,7 +136,7 @@ class KelasController extends Controller
         }
 
         return Redirect::route('kelas.edit', $id)->with('toast', [
-            'message' => 'Mohon maaf terjadi kesalahan, silahkan mencoba kembali', 
+            'message' => 'Tidak ada data yang dirubah', 
             'success' => false
         ]);
 
