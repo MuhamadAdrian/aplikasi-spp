@@ -39,4 +39,14 @@ class Siswa extends Model
         return $this->hasOne(User::class, 'nisn_siswa', 'nisn');
     }
 
+    public function pembayaran()
+    {
+        return  $this->hasMany(Pembayaran::class, 'id_spp', 'id_spp');
+    }
+
+    public function spp()
+    {
+        return $this->belongsTo(Spp::class, 'id_spp', 'id');
+    }
+
 }

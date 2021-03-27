@@ -3,7 +3,8 @@
 		<input
 			id="search"
 			type="text"
-			class="w-full md:w-80 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+			class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+			:class="[wFull ? 'md:w-full' : 'md:w-80']"
 			@keyup="searchData()"
 			v-model="search"
 			autocomplete="search"
@@ -32,6 +33,9 @@ export default {
 			default: "Cari Nama",
 		},
 		params: null,
+		wFull: {
+			default: false,
+		},
 	},
 
 	data() {

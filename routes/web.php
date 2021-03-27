@@ -61,8 +61,14 @@ Route::middleware(['auth', 'verified', 'authadmin'])->group(function () {
         'index' => 'petugas',
         'create' => 'petugas.tambah'
     ]);
+
+    Route::resource('entri-transaksi-pembayaran', PembayaranController::class)->names([
+        'index' => 'pembayaran',
+        'create' => 'pembayaran.tambah',
+        'store' => 'pembayaran.store',
+        'destroy' => 'pembayaran.destroy'
+    ]);
     
-    Route::get('/entri-transaksi-pembayaran', [PembayaranController::class, 'index'])->name('pembayaran');
     
     Route::get('/histori-pembayaran', [HistoriController::class, 'index'])->name('histori');
 

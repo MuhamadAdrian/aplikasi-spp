@@ -75,10 +75,16 @@ class AuthAdmin
                 'data-petugas.destroy',
                 'data-petugas.edit',
                 'data-petugas.update',
+                'pembayaran.tambah',
+                'pembayaran.store',
+                'pembayaran.destroy',
             ],
 
             'petugas' => [
                 'pembayaran',
+                'pembayaran.tambah',
+                'pembayaran.store',
+                'pembayaran.destroy',
                 'histori'
             ],
 

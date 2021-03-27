@@ -15,7 +15,7 @@
 				:key="index"
 				class="border-b border-gray-300"
 			>
-				<td>{{ index + number }}</td>
+				<td class="font-bold">{{ index + number }}</td>
 				<td>{{ petugas.nama_petugas }}</td>
 				<td>{{ petugas.username }}</td>
 				<td>{{ petugas.level }}</td>

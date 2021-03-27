@@ -14,7 +14,7 @@
 				:key="index"
 				class="border-b border-gray-300"
 			>
-				<td>{{ index + number }}</td>
+				<td class="font-bold">{{ index + number }}</td>
 				<td>{{ spp.tahun }}</td>
 				<td>{{ spp.nominal }}</td>
 				<td class="flex justify-center items-center h-12">

@@ -28,4 +28,9 @@ class Petugas extends Model
     {
         return $this->hasOne(User::class, 'id_petugas', 'id');
     }
+
+    public function pembayaran()
+    {
+        return $this->hasMany(Pembayaran::class, 'id_petugas', 'id');
+    }
 }

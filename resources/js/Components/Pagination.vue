@@ -1,5 +1,8 @@
 <template>
-	<div class="pagination flex items-center justify-end w-full mt-5">
+	<div
+		v-if="data"
+		class="pagination flex items-center justify-end w-full mt-5"
+	>
 		<div class="information">
 			<p class="text-xs text-gray-400">
 				<span class="mr-3">Halaman {{ data.current_page }} </span>

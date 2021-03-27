@@ -5,7 +5,9 @@ namespace App\Http\Middleware;
 use Illuminate\Http\Request;
 use App\Models\Petugas;
 use App\Models\Siswa;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
+
 
 class HandleInertiaRequests extends Middleware
 {
@@ -36,13 +38,13 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request)
     {
         return array_merge(parent::share($request), [   
-            'auth' => [
-                'user' => fn () => 
-                    $request->user() && $request->user()->id_petugas ? Petugas::findOrFail($request->user()->id_petugas) : 
-                    ( $request->user() && $request->user()->nisn_siswa ? Siswa::where('nisn', $request->user()->nisn_siswa)->with('kelas')->firstOrFail(): null),
-            ],
+            'auth' => fn () =>  
+            $request->user() && $request->user()->id_petugas 
+            ? ['user' => $request->user()->petugas->only('id', 'nama_petugas', 'username', 'level')] : 
+            ( $request->user() && $request->user()->nisn_siswa 
+            ? ['user' => $request->user()->siswa, 'kelas' => $request->user()->siswa->kelas]: null),
 
-            'toast' => fn () => $request->session()->get('toast')
+            'toast' => $request->session()->get('toast')
         ]);
     }
 }

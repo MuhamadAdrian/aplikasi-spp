@@ -75,15 +75,6 @@ class SppController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $detail = Spp::with('siswa')->find($id);
-
-        $detail->setRelation('siswa', $detail->siswa()->with('kelas')->where('nama', 'LIKE', '%'.$request->search.'%')->paginate(5));
-        
-        return Inertia::render('Spp/Detail', [
-            'detail' => $detail
-        ]);
-
-
     }
     
     /**
