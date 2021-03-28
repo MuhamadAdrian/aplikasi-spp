@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use App\Models\Pembayaran;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -28,23 +29,27 @@ class PembayaranController extends Controller
      */
     public function create(Request $request)
     {
-        $pembayaran = Pembayaran::where('nisn', $request->nisn)->with(['siswa', 'petugas', 'spp'])->paginate(5);
+        $pembayaran = Pembayaran::where('nisn', $request->nisn)
+        ->with(['siswa', 'petugas', 'spp'])
+        ->latest('tgl_bayar')
+        ->get();
 
         foreach ($pembayaran as $p) {
             $p->tunggakan = $p->spp->nominal - $p->jumlah_dibayar;
+            $p->tgl_bayar = Carbon::parse($p->tgl_bayar)->isoFormat('D MMMM Y');
         }
-
+        
         return Inertia::render('Pembayaran/Tambah', [
             'data' => [
-                'siswa' => Siswa::where('nisn', $request->nisn)->with("kelas")->with('spp')->first(),
+                'siswa' => Siswa::where('nisn', $request->nisn)->with(['kelas', 'spp'])->first(),
             ],
-
+            
             'historiPembayaran' => $pembayaran
-        ]);
-    }
-
-    /**
-     * Store a newly created resource in storage.
+            ]);
+        }
+        
+        /**
+         * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -60,10 +65,11 @@ class PembayaranController extends Controller
             return;
         }
 
+        
         Pembayaran::create([
             'id_petugas' => auth()->user()->petugas->id,
             'nisn' => $request->nisn,
-            'tgl_bayar' => now(),
+            'tgl_bayar' => Carbon::now()->toDateTimeString(),
             'bulan_dibayar' => $request->bulan_bayar,
             'tahun_dibayar' => $request->tahun_bayar,
             'id_spp' => $request->id_spp,

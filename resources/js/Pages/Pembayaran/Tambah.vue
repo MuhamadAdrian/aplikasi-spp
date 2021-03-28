@@ -4,8 +4,10 @@
 			<div class="bg-white md:p-10 p-4 rounded-md">
 				<form-data :data="data.siswa"></form-data>
 			</div>
-			<div class="bg-white mt-10 md:p-10 p-4 rounded-md">
-				<h1>Informasi Pembayaran Siswa</h1>
+			<h1 class="font-semibold text-sm mb-5 mt-16 text-gray-500">
+				3 Pembayaran Terakhir Siswa
+			</h1>
+			<div class="bg-white md:p-10 p-4 rounded-md">
 				<table class="table-auto w-full text-base">
 					<thead class="rounded-md">
 						<tr class="h-14">
@@ -25,11 +27,11 @@
 						class="text-center mt-5 text-sm"
 					>
 						<tr
-							v-for="(histori, index) in historiPembayaran.data"
+							v-for="(histori, index) in historiPembayaran"
 							:key="index"
 							class="border-b border-gray-300"
 						>
-							<td class="font-bold">{{ index + number }}</td>
+							<td class="font-bold">{{ ++index }}</td>
 							<td>{{ histori.siswa.nisn }}</td>
 							<td>{{ histori.petugas.nama_petugas }}</td>
 							<td>{{ histori.tgl_bayar }}</td>
@@ -46,8 +48,15 @@
 							></td>
 						</tr>
 					</tbody>
+					<tbody
+						v-if="historiPembayaran == null"
+						class="text-center mt-5 text-sm"
+					>
+						<tr>
+							<td>Test</td>
+						</tr>
+					</tbody>
 				</table>
-				<pagination :data="historiPembayaran"></pagination>
 			</div>
 		</div>
 	</div>
@@ -65,20 +74,6 @@ export default {
 		Pagination,
 	},
 
-	computed: {
-		number() {
-			return (
-				(this.historiPembayaran.current_page - 1) *
-					this.historiPembayaran.per_page +
-				1
-			);
-		},
-	},
-
 	props: ["data", "historiPembayaran"],
-
-	mounted() {
-		console.log(this.historiPembayaran);
-	},
 };
 </script>

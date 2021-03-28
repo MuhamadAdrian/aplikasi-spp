@@ -13,9 +13,10 @@
 		<div class="button-link">
 			<inertia-link
 				preserveScroll
+				preserveState
 				as="button"
 				:href="buttonLink.url ? buttonLink.url : '#'"
-				v-for="(buttonLink, index) in data.links"
+				v-for="(buttonLink, index) in links"
 				:disabled="buttonLink.active || buttonLink.url == null"
 				:key="index"
 				class="inline-block rounded-md text-white px-3 py-2 text-xs mr-1 transition-all duration-200"
@@ -33,6 +34,23 @@
 
 <script>
 export default {
-	props: ["data"],
+	props: ["data", "nisn"],
+
+	data() {
+		return {
+			test: [],
+		};
+	},
+
+	computed: {
+		links() {
+			if (this.nisn) {
+				this.data.links.forEach((link) => {
+					link.url += `&nisn=${this.nisn}`;
+				});
+			}
+			return this.data.links;
+		},
+	},
 };
 </script>

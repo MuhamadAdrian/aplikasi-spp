@@ -19,7 +19,8 @@
 				<td>{{ siswa.nisn }}</td>
 				<td>{{ siswa.nis }}</td>
 				<td>{{ siswa.nama }}</td>
-				<td>{{ siswa.kelas.nama_kelas }}</td>
+				<td v-if="siswa.kelas">{{ siswa.kelas.nama_kelas }}</td>
+				<td v-else>Tidak Ada Kelas</td>
 				<td class="flex justify-center items-center h-12">
 					<inertia-link
 						:href="route('pembayaran.tambah', { nisn: siswa.nisn })"
