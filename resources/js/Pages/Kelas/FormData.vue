@@ -113,9 +113,9 @@ export default {
 	methods: {
 		submit() {
 			if (this.edit && this.data) {
-				this.form.put(this.route("data-kelas.update", this.data.id));
+				this.form.put(this.route("kelas.update", this.data.id));
 			} else {
-				this.form.post(this.route("data-kelas.store"));
+				this.form.post(this.route("kelas.store"));
 			}
 		},
 	},

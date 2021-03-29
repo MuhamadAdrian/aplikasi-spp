@@ -9,11 +9,11 @@
 				<th>Kelas</th>
 			</tr>
 		</thead>
-		<tbody v-if="data" class="text-center mt-5 text-sm">
+		<tbody v-if="data" class="text-center mt-5 text-sm table-row-group">
 			<tr
 				v-for="(siswa, index) in data.data"
 				:key="index"
-				class="border-b border-gray-300"
+				class="border-b border-gray-300 table-row"
 			>
 				<td class="font-bold">{{ index + number }}</td>
 				<td>{{ siswa.nisn }}</td>

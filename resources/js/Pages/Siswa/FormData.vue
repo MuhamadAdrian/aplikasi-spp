@@ -215,6 +215,10 @@ export default {
 			default: null,
 			type: Number,
 		},
+		fromCurrentClass: {
+			default: false,
+			type: Boolean,
+		},
 	},
 
 	data() {
@@ -228,6 +232,7 @@ export default {
 				no_telp: this.data ? this.data.no_telp : "",
 				id_spp: this.data ? this.data.id_spp : null,
 				create_account: !this.edit ? true : false,
+				from_current_class: this.fromCurrentClass,
 			}),
 		};
 	},
@@ -235,7 +240,7 @@ export default {
 	methods: {
 		submit() {
 			if (this.edit && this.data) {
-				this.form.put(this.route("data-siswa.update", this.data.nisn), {
+				this.form.put(this.route("siswa.update", this.data.nisn), {
 					preserveScroll: true,
 				});
 			} else {

@@ -1,13 +1,13 @@
 <template>
 	<div class="py-12">
 		<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-			<div class="bg-white md:p-10 p-4 rounded-md">
+			<div class="bg-white md:p-10 p-4 rounded-md shadow-md">
 				<form-data :data="data.siswa"></form-data>
 			</div>
-			<h1 class="font-semibold text-sm mb-5 mt-16 text-gray-500">
+			<h1 class="font-semibold text-sm mb-5 mt-16 text-gray-400 ml-3">
 				3 Pembayaran Terakhir Siswa
 			</h1>
-			<div class="bg-white md:p-10 p-4 rounded-md">
+			<div class="bg-white md:p-10 p-4 rounded-md shadow-md">
 				<table class="table-auto w-full text-base">
 					<thead class="rounded-md">
 						<tr class="h-14">
@@ -22,10 +22,7 @@
 							<th>Tunggakan</th>
 						</tr>
 					</thead>
-					<tbody
-						v-if="historiPembayaran"
-						class="text-center mt-5 text-sm"
-					>
+					<tbody class="text-center mt-5 text-sm">
 						<tr
 							v-for="(histori, index) in historiPembayaran"
 							:key="index"
@@ -57,7 +54,14 @@
 						</tr>
 					</tbody>
 				</table>
+				<p
+					v-if="historiPembayaran.length == 0"
+					class="text-center my-10"
+				>
+					Tidak ada data
+				</p>
 				<inertia-link
+					v-if="historiPembayaran.length > 0"
 					as="button"
 					:href="route('histori.show', route().params.nisn)"
 					class="px-3 py-2 rounded-md bg-indigo-400 hover:bg-indigo-500 text-white text-sm ml-auto mt-4 block"
@@ -82,5 +86,9 @@ export default {
 	},
 
 	props: ["data", "historiPembayaran"],
+
+	mounted() {
+		console.log(this.historiPembayaran);
+	},
 };
 </script>

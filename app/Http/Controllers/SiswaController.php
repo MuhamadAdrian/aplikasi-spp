@@ -8,6 +8,7 @@ use App\Models\Kelas;
 use App\Models\Siswa;
 use App\Models\Spp;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -53,6 +54,7 @@ class SiswaController extends Controller
             'kelas' => $this->kelas,
             'spp' => $this->spp,
             'id_kelas' => $request->id_kelas ? $request->id_kelas : null,
+            'from_current_class' => $request->id_kelas ? true : false
         ]);
     }
 
@@ -66,34 +68,39 @@ class SiswaController extends Controller
     {
         $request->validated();
 
-        $siswa = Siswa::create([
-            'nisn' => $request->nisn,
-            'nis' => $request->nis,
-            'nama' => $request->nama,
-            'id_kelas' => $request->id_kelas,
-            'alamat' => $request->alamat,
-            'no_telp' => $request->no_telp,
-            'id_spp' => $request->id_spp
-        ]);
+        if ($request->create_account) {
+            DB::transaction(function () use($request) {            
+                $siswa = Siswa::create([
+                    'nisn' => $request->nisn,
+                    'nis' => $request->nis,
+                    'nama' => $request->nama,
+                    'id_kelas' => $request->id_kelas,
+                    'alamat' => $request->alamat,
+                    'no_telp' => $request->no_telp,
+                    'id_spp' => $request->id_spp
+                ]);
 
-        if ($siswa && $request->create_account) {
-            $username = $request->nis . '@spp';
-            $siswa->user()->create([
-                'name' => $request->nama,
-                'username' => $username,
-                'password' => Hash::make($request->nis),
-                'nisn_siswa' => $request->nisn,
-                'role' => 'siswa'
-            ]);
-            return Redirect::route('siswa')->with('toast', [
+                $siswa->user()->create([
+                    'name' => $request->nama,
+                    'username' => $request->nis . '@spp',
+                    'password' => Hash::make($request->nis),
+                    'nisn_siswa' => $request->nisn,
+                    'role' => 'siswa'
+                ]);
+            });
+        }
+
+        if ($request->from_current_class) {
+            return Redirect::route('kelas.show', $request->id_kelas)->with('toast', [
                 'message' => 'Data dan akun siswa berhasil ditambahkan', 
                 'success' => true
             ]);
         }
-        return Redirect::route('siswa.tambah')->with('toast', [
-            'message' => 'Maaf terjadi kesalahan', 
-            'success' => false
+        return Redirect::route('siswa')->with('toast', [
+            'message' => 'Data dan akun siswa berhasil ditambahkan', 
+            'success' => true
         ]);
+
     }
     
     /**
@@ -158,7 +165,7 @@ class SiswaController extends Controller
             ]);
         }
 
-        return Redirect::route('data-siswa.edit', $this->siswa->nisn)->with('toast', [
+        return Redirect::route('siswa.edit', $this->siswa->nisn)->with('toast', [
             'message' => 'Tidak ada data yang dirubah', 
             'success' => false
         ]);

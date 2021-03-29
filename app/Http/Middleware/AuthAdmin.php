@@ -46,47 +46,46 @@ class AuthAdmin
         return [
             'admin' => [
                 'dashboard',
-                'siswa',
-                'petugas',
-                'kelas',
-                'spp',
-                'pembayaran',
-                'histori',
-                'histori.show',
                 'laporan',
                 'register',
+                'histori', //histori route
+                'histori.show',
+                'siswa', //siswa route
                 'siswa.tambah',
                 'siswa.store',
-                'data-siswa.destroy',
-                'data-siswa.edit',
-                'data-siswa.update',
+                'siswa.destroy',
+                'siswa.edit',
+                'siswa.update',
+                'kelas', //kelas route
                 'kelas.tambah',
-                'data-kelas.store',
-                'data-kelas.destroy',
-                'data-kelas.edit',
-                'data-kelas.update',
-                'data-kelas.show',
+                'kelas.store',
+                'kelas.destroy',
+                'kelas.edit',
+                'kelas.update',
+                'kelas.show',
+                'spp', //spp route
                 'spp.tambah',
-                'data-spp.store',
-                'data-spp.destroy',
-                'data-spp.edit',
-                'data-spp.update',
+                'spp.store',
+                'spp.destroy',
+                'spp.edit',
+                'spp.update',
+                'petugas', //petugas route
                 'petugas.tambah',
-                'data-petugas.store',
-                'data-petugas.destroy',
-                'data-petugas.edit',
-                'data-petugas.update',
+                'petugas.store',
+                'petugas.destroy',
+                'petugas.edit',
+                'petugas.update',
+                'pembayaran', //pembayaran route
                 'pembayaran.tambah',
                 'pembayaran.store',
-                'pembayaran.destroy',
             ],
-
+            
             'petugas' => [
-                'pembayaran',
+                'pembayaran', //pembayaran route
                 'pembayaran.tambah',
                 'pembayaran.store',
-                'pembayaran.destroy',
-                'histori'
+                'histori', //histori route
+                'histori.show',
             ],
 
             'siswa' => [

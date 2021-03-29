@@ -19,7 +19,7 @@
 				<td>{{ spp.nominal }}</td>
 				<td class="flex justify-center items-center h-12">
 					<inertia-link
-						:href="route('data-spp.edit', spp.id)"
+						:href="route('spp.edit', spp.id)"
 						as="button"
 						class="rounded-md relative mr-1 w-3 h-3 p-4 transition-colors duration-200 bg-indigo-400 hover:bg-indigo-500 text-sm flex items-center justify-center text-white"
 					>
@@ -47,7 +47,7 @@ export default {
 
 	methods: {
 		deleteData(id) {
-			this.$inertia.delete(this.route("data-spp.destroy", id));
+			this.$inertia.delete(this.route("spp.destroy", id));
 		},
 	},
 

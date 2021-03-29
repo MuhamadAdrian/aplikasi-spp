@@ -44,22 +44,38 @@ Route::middleware(['auth', 'verified', 'authadmin'])->group(function () {
     Route::resource('data-siswa', SiswaController::class, )->names([
         'index' => 'siswa',
         'create' => 'siswa.tambah',
-        'store' => 'siswa.store'
+        'store' => 'siswa.store',
+        'destroy' => 'siswa.destroy',
+        'edit' => 'siswa.edit',
+        'update' => 'siswa.update'
     ]);
 
     Route::resource('data-kelas', KelasController::class)->names([
         'index' => 'kelas',
-        'create' => 'kelas.tambah'
+        'create' => 'kelas.tambah',
+        'store' => 'kelas.store',
+        'destroy' => 'kelas.destroy',
+        'edit' => 'kelas.edit',
+        'update' => 'kelas.update',
+        'show' => 'kelas.show'
     ]);
     
     Route::resource('data-spp', SppController::class)->names([
         'index' => 'spp',
-        'create' => 'spp.tambah'
+        'create' => 'spp.tambah',
+        'store' => 'spp.store',
+        'destroy' => 'spp.destroy',
+        'edit' => 'spp.edit',
+        'update' => 'spp.update'
     ]);
 
     Route::resource('data-petugas', PetugasController::class)->names([
         'index' => 'petugas',
-        'create' => 'petugas.tambah'
+        'create' => 'petugas.tambah',
+        'store' => 'petugas.store',
+        'destroy' => 'petugas.destroy',
+        'edit' => 'petugas.edit',
+        'update' => 'petugas.update'
     ]);
 
     Route::resource('entri-transaksi-pembayaran', PembayaranController::class)->names([

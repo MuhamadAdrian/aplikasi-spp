@@ -22,11 +22,7 @@ class PembayaranController extends Controller
         ]);
     }
     
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create(Request $request)
     {
         $pembayaran = Pembayaran::where('nisn', $request->nisn)
@@ -49,12 +45,7 @@ class PembayaranController extends Controller
         ]);
     }
         
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         if (Pembayaran::where('nisn', $request->nisn)
@@ -85,54 +76,31 @@ class PembayaranController extends Controller
             'jumlah_dibayar' => $request->jumlah_bayar
         ]);
 
-        return Redirect::route('pembayaran.tambah', ['nisn' => $request->nisn])->with('toast', [
+        return Redirect::route('histori.show', $request->nisn)->with('toast', [
             'message' => 'Data Pembayaran Berhasil ditambahkan', 
             'success' => true
         ]);
     }
     
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-    
-
 
     }
     
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
 
     }
         
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         
     }
     
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
        

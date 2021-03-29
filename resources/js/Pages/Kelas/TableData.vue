@@ -19,14 +19,14 @@
 				<td>{{ kelas.kompetensi_keahlian }}</td>
 				<td class="flex justify-center items-center h-12">
 					<inertia-link
-						:href="route('data-kelas.edit', kelas.id)"
+						:href="route('kelas.edit', kelas.id)"
 						as="button"
 						class="rounded-md relative mr-1 w-3 h-3 p-4 transition-colors duration-200 bg-indigo-400 hover:bg-indigo-500 text-sm flex items-center justify-center text-white"
 					>
 						<icon name="edit-icon"></icon>
 					</inertia-link>
 					<inertia-link
-						:href="route('data-kelas.show', kelas.id)"
+						:href="route('kelas.show', kelas.id)"
 						as="button"
 						class="rounded-md relative mr-1 w-3 h-3 p-4 transition-colors duration-200 bg-green-400 hover:bg-green-500 text-sm flex items-center justify-center text-white"
 					>
@@ -56,7 +56,7 @@ export default {
 
 	methods: {
 		deleteData(id) {
-			this.$inertia.delete(this.route("data-kelas.destroy", id));
+			this.$inertia.delete(this.route("kelas.destroy", id));
 		},
 	},
 };

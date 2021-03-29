@@ -3,28 +3,37 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pembayaran;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
+use App\Models\Siswa;
 
 use Inertia\Inertia;
 
 class HistoriController extends Controller
 {
-    public function index()
+
+    private $pembayaran;
+
+    public function __construct()
     {
-        $pembayaran = Pembayaran::with(['spp', 'petugas', 'siswa'])->latest('tgl_bayar')->paginate(5);
-        foreach ($pembayaran->items() as $p) {
-            $p->tgl_bayar = Carbon::parse($p->tgl_bayar)->isoFormat('D MMMM Y');
-        }
+        $this->pembayaran = Pembayaran::with(['spp', 'petugas', 'siswa'])
+        ->latest('tgl_bayar')
+        ->withCasts(['tgl_bayar' => 'datetime:d M Y']);
+    
+    }
+
+
+    public function index()
+    {   
         return Inertia::render('Histori/Index', [
-            'histori' => $pembayaran
+            'histori' => $this->pembayaran->paginate(5)
         ]);
     }
 
     public function show($nisn)
-    {
+    {        
+
         return Inertia::render('Histori/Detail', [
-            'detail' => Pembayaran::with(['siswa', 'petugas', 'spp'])->where('nisn', $nisn)->latest('tgl_bayar')->paginate(5)
+            'detail' => $this->pembayaran->where('nisn', $nisn)->paginate(5),
+            'siswa' => Siswa::with(['kelas', 'spp'])->where('nisn', $nisn)->firstOrFail()
         ]);
     }
 }

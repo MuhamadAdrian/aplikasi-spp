@@ -9,7 +9,7 @@
 		>
 			<icon name="add-icon"></icon>
 		</inertia-link>
-		<p class="ml-3 font-semibold">Tambah Data</p>
+		<p class="ml-3 font-semibold"><slot>Tambah Data</slot></p>
 	</div>
 </template>
 

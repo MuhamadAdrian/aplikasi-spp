@@ -109,9 +109,9 @@ export default {
 		submit() {
 			if (this.edit && this.data) {
 				//console.log(this.data);
-				this.form.put(this.route("data-spp.update", this.data.id));
+				this.form.put(this.route("spp.update", this.data.id));
 			} else {
-				this.form.post(this.route("data-spp.store"));
+				this.form.post(this.route("spp.store"));
 			}
 		},
 	},
