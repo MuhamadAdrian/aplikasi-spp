@@ -148,11 +148,11 @@ export default {
 	methods: {
 		submit() {
 			if (this.edit && this.data) {
-				this.form.put(this.route("data-petugas.update", this.data.id), {
+				this.form.put(this.route("petugas.update", this.data.id), {
 					preserveScroll: true,
 				});
 			} else {
-				this.form.post(this.route("data-petugas.store"), {
+				this.form.post(this.route("petugas.store"), {
 					preserveScroll: true,
 				});
 			}

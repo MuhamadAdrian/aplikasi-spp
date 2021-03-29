@@ -25,13 +25,18 @@ class AuthAdmin
 
             if (in_array($currentRouteName, $this->userAccessRole()[$userRole])) 
             {
+                if (auth()->user()->role=="siswa") {
+                    if (Route::getCurrentRoute()->parameter('histori_pembayaran') != auth()->user()->siswa->nisn) {
+                        return Redirect::route('histori.show', auth()->user()->siswa->nisn);
+                    }
+                }
                 return $next($request);
             }
             else if ($userRole == 'petugas') {
                 return Redirect::route('pembayaran');
             }
             else if ($userRole == 'siswa'){
-                return Redirect::route('histori');
+                return Redirect::route('histori.show', auth()->user()->siswa->nisn);
             }
             else {
                 abort(403, 'Route tidak ditemukan');
@@ -89,7 +94,7 @@ class AuthAdmin
             ],
 
             'siswa' => [
-                'histori'
+                'histori.show'
             ]
             ];
     }

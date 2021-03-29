@@ -29,8 +29,7 @@ class HistoriController extends Controller
     }
 
     public function show($nisn)
-    {        
-
+    {   
         return Inertia::render('Histori/Detail', [
             'detail' => $this->pembayaran->where('nisn', $nisn)->paginate(5),
             'siswa' => Siswa::with(['kelas', 'spp'])->where('nisn', $nisn)->firstOrFail()

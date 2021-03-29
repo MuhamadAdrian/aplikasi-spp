@@ -39,9 +39,5 @@ export default {
 		SearchInput,
 	},
 	props: ["siswa"],
-
-	mounted() {
-		console.log(this.$page.props.auth);
-	},
 };
 </script>

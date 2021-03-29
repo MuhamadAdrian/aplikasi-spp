@@ -24,7 +24,7 @@
 				:active="
 					route().current('siswa') ||
 					route().current('siswa.tambah') ||
-					route().current('data-siswa.edit')
+					route().current('siswa.edit')
 				"
 				popup-text="Data Siswa"
 				:is-sidebar-hidden="isSidebarHidden"
@@ -42,8 +42,8 @@
 				:active="
 					route().current('kelas') ||
 					route().current('kelas.tambah') ||
-					route().current('data-kelas.edit') ||
-					route().current('data-kelas.show')
+					route().current('kelas.edit') ||
+					route().current('kelas.show')
 				"
 				popup-text="Data Kelas"
 				:is-sidebar-hidden="isSidebarHidden"
@@ -61,7 +61,7 @@
 				:active="
 					route().current('petugas') ||
 					route().current('petugas.tambah') ||
-					route().current('data-petugas.edit')
+					route().current('petugas.edit')
 				"
 				popup-text="Data Petugas"
 				:is-sidebar-hidden="isSidebarHidden"
@@ -79,7 +79,7 @@
 				:active="
 					route().current('spp') ||
 					route().current('spp.tambah') ||
-					route().current('data-spp.edit')
+					route().current('spp.edit')
 				"
 				popup-text="Data Spp"
 				:is-sidebar-hidden="isSidebarHidden"
@@ -114,7 +114,10 @@
 			</NavLink>
 			<NavLink
 				:href="route('histori')"
-				:active="route().current('histori')"
+				:active="
+					route().current('histori') ||
+					route().current('histori.show')
+				"
 				popup-text="Histori Pembayaran"
 				:is-sidebar-hidden="isSidebarHidden"
 				class="mb-3"
@@ -149,7 +152,10 @@
 			<NavLink
 				:is-sidebar-hidden="isSidebarHidden"
 				:href="route('pembayaran')"
-				:active="route().current('pembayaran')"
+				:active="
+					route().current('pembayaran') ||
+					route().current('pembayaran.tambah')
+				"
 				popup-text="Entri Transaksi"
 			>
 				<icon class="ml-1" name="entri-icon"></icon>
@@ -161,7 +167,10 @@
 			</NavLink>
 			<NavLink
 				:href="route('histori')"
-				:active="route().current('histori')"
+				:active="
+					route().current('histori') ||
+					route().current('histori.show')
+				"
 				popup-text="Histori Pembayaran"
 				:is-sidebar-hidden="isSidebarHidden"
 			>
@@ -176,7 +185,7 @@
 		<div v-else>
 			<NavLink
 				:href="route('histori')"
-				:active="route().current('histori')"
+				:active="route().current('histori.show')"
 				popup-text="Histori Pembayaran"
 				:is-sidebar-hidden="isSidebarHidden"
 			>

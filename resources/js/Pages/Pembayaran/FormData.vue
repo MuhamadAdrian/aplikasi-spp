@@ -69,15 +69,40 @@
 			</div>
 
 			<div class="mt-4">
-				<input-label for="id_spp" value="Spp" />
-				<form-input
-					id="id_spp"
-					type="text"
-					class="mt-1 block w-full text-gray-400 cursor-not-allowed"
-					:value="`(${data.spp.tahun}) - ${data.spp.nominal}`"
-					disabled
+				<input-label for="spp" value="Spp" />
+				<select
 					required
-				/>
+					v-model="form.id_spp"
+					:disabled="data.spp"
+					:class="{
+						'border-red-500': form.errors.id_spp,
+					}"
+					class="w-full block mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+				>
+					<option selected disabled hidden :value="null">
+						Pilih Spp
+					</option>
+					<option
+						v-for="eachSpp in spp"
+						:key="eachSpp.id"
+						:value="eachSpp.id"
+					>
+						Tahun {{ eachSpp.tahun }} - Nominal
+						{{ eachSpp.nominal }}
+					</option>
+				</select>
+				<p v-if="spp.length == 0" class="text-xs text-red-600 mt-5">
+					*Pastikan terdapat data spp yang telah diinput
+				</p>
+				<p v-if="!data.spp" class="text-xs text-red-600 mt-5">
+					*Siswa tidak memiliki spp yang ditetapkan, silahkan ubah
+					data siswa terlebih dahulu
+					<inertia-link
+						:href="route('siswa.edit', data.nisn)"
+						class="border-b border-indigo-500 text-indigo-500"
+						>disini</inertia-link
+					>
+				</p>
 				<form-error
 					class="mt-3"
 					:message="form.errors.id_spp"
@@ -131,6 +156,9 @@ export default {
 		data: {
 			default: null,
 		},
+		spp: {
+			default: null,
+		},
 	},
 
 	data() {
@@ -142,7 +170,7 @@ export default {
 					: null,
 				bulan_bayar: null,
 				tahun_bayar: null,
-				id_spp: this.data ? this.data.spp.id : null,
+				id_spp: this.data.spp ? this.data.spp.id : null,
 				jumlah_bayar: null,
 			}),
 

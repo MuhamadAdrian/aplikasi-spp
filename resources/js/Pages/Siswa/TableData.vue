@@ -37,6 +37,7 @@
 			</tr>
 		</tbody>
 	</table>
+	<p v-if="!data.data.length" class="text-center my-10">Tidak ada data</p>
 </template>
 
 <script>

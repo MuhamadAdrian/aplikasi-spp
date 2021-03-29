@@ -21,7 +21,7 @@
 				<td>{{ petugas.level }}</td>
 				<td class="flex justify-center items-center h-12">
 					<inertia-link
-						:href="route('data-petugas.edit', petugas.id)"
+						:href="route('petugas.edit', petugas.id)"
 						as="button"
 						class="rounded-md relative mr-1 w-3 h-3 p-4 transition-colors duration-200 bg-indigo-400 hover:bg-indigo-500 text-sm flex items-center justify-center text-white"
 					>
@@ -34,6 +34,7 @@
 			</tr>
 		</tbody>
 	</table>
+	<p v-if="!data.data.length" class="text-center my-10">Tidak ada data</p>
 </template>
 
 <script>
@@ -51,7 +52,7 @@ export default {
 
 	methods: {
 		deleteData(id) {
-			this.$inertia.delete(this.route("data-petugas.destroy", id));
+			this.$inertia.delete(this.route("petugas.destroy", id));
 		},
 	},
 };

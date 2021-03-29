@@ -130,6 +130,11 @@
 					class="mt-3"
 					:message="form.errors.id_kelas"
 				></form-error>
+				<form-error
+					v-if="!kelas.length"
+					class="mt-3"
+					message="Tambahkan data kelas terlebih dahulu"
+				></form-error>
 			</div>
 
 			<div class="mt-4">
@@ -157,6 +162,11 @@
 				<form-error
 					class="mt-3"
 					:message="form.errors.id_spp"
+				></form-error>
+				<form-error
+					v-if="!spp.length"
+					class="mt-3"
+					message="Tambahkan data spp terlebih dahulu"
 				></form-error>
 			</div>
 

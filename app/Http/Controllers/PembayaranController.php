@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use App\Models\Pembayaran;
+use App\Models\Spp;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -41,45 +42,54 @@ class PembayaranController extends Controller
                 'siswa' => Siswa::where('nisn', $request->nisn)->with(['kelas', 'spp'])->first(),
             ],
             
-            'historiPembayaran' => $pembayaran
+            'historiPembayaran' => $pembayaran,
+
+            'spp' => Spp::all()
         ]);
     }
         
 
     public function store(Request $request)
     {
-        if (Pembayaran::where('nisn', $request->nisn)
-        ->where('bulan_dibayar', $request->bulan_bayar)
-        ->where('tahun_dibayar', $request->tahun_bayar)
-        ->exists() == true) 
-        {
-            return redirect()->back()->with('toast', [
-                'message' => "Siswa ini telah membayar untuk bulan $request->bulan_bayar $request->tahun_bayar",
+        try{
+            if (Pembayaran::where('nisn', $request->nisn)
+            ->where('bulan_dibayar', $request->bulan_bayar)
+            ->where('tahun_dibayar', $request->tahun_bayar)
+            ->exists() == true) 
+            {
+                return redirect()->back()->with('toast', [
+                    'message' => "Siswa ini telah membayar untuk bulan $request->bulan_bayar $request->tahun_bayar",
+                    'success' => false
+                ]);
+            }
+    
+            $request->validate([
+                'nisn' => 'required',
+                'bulan_bayar' => 'required|string',
+                'tahun_bayar' => 'required|string',
+                'id_spp' => 'required',
+                'jumlah_bayar' => 'required|integer'
+            ]);
+            
+            Pembayaran::create([
+                'id_petugas' => auth()->user()->petugas->id,
+                'nisn' => $request->nisn,
+                'bulan_dibayar' => $request->bulan_bayar,
+                'tahun_dibayar' => $request->tahun_bayar,
+                'id_spp' => $request->id_spp,
+                'jumlah_dibayar' => $request->jumlah_bayar
+            ]);
+    
+            return Redirect::route('histori.show', $request->nisn)->with('toast', [
+                'message' => 'Data Pembayaran Berhasil ditambahkan', 
+                'success' => true
+            ]);
+        }catch(\Throwable $th){
+            return Redirect::route('pembayaran.tambah', ['nisn' => $request->nisn])->with('toast', [
+                'message' => 'Pastikan Siswa ini memiliki tahun spp yang telah diinput sebelumnya', 
                 'success' => false
             ]);
         }
-
-        $request->validate([
-            'nisn' => 'required',
-            'bulan_bayar' => 'required|string',
-            'tahun_bayar' => 'required|string',
-            'id_spp' => 'required',
-            'jumlah_bayar' => 'required|integer'
-        ]);
-        
-        Pembayaran::create([
-            'id_petugas' => auth()->user()->petugas->id,
-            'nisn' => $request->nisn,
-            'bulan_dibayar' => $request->bulan_bayar,
-            'tahun_dibayar' => $request->tahun_bayar,
-            'id_spp' => $request->id_spp,
-            'jumlah_dibayar' => $request->jumlah_bayar
-        ]);
-
-        return Redirect::route('histori.show', $request->nisn)->with('toast', [
-            'message' => 'Data Pembayaran Berhasil ditambahkan', 
-            'success' => true
-        ]);
     }
     
 

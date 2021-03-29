@@ -16,12 +16,16 @@
 					<tr class="h-10">
 						<td class="font-semibold">Kelas</td>
 						<td>:</td>
-						<td>{{ siswa.kelas.nama_kelas }}</td>
+						<td v-if="siswa.kelas">{{ siswa.kelas.nama_kelas }}</td>
+						<td v-else>-</td>
 					</tr>
 					<tr class="h-10">
 						<td class="font-semibold">Kompetensi Keahlian</td>
 						<td>:</td>
-						<td>{{ siswa.kelas.kompetensi_keahlian }}</td>
+						<td v-if="siswa.kelas">
+							{{ siswa.kelas.kompetensi_keahlian }}
+						</td>
+						<td v-else>-</td>
 					</tr>
 					<tr class="h-10">
 						<td class="font-semibold">SPP</td>
@@ -50,20 +54,22 @@
 					</tr>
 				</table>
 				<inertia-link
+					v-if="$page.props.auth.user.level"
 					as="button"
 					:href="route('siswa', { search: siswa.nisn })"
 					class="hover:bg-indigo-50 transition-colors duration-200 text-indigo-600 ml-auto block mt-5 text-sm py-2 px-3 rounded-md"
-					>Ke Halaman Siswa</inertia-link
+					>Ke Data Siswa</inertia-link
 				>
 			</div>
 			<h2 class="text-sm font-semibold mt-10 ml-3 text-gray-400">
 				Histori Pembayaran Siswa
 			</h2>
-			<div class="bg-white p-5 rounded-md shadow-md mt-5">
+			<div class="bg-white p-5 rounded-md shadow-md mt-5 md:block hidden">
 				<div
 					class="flex flex-col md:flex-row md:items-center justify-between mb-3"
 				>
 					<add-button
+						v-if="$page.props.auth.user.level"
 						:href="
 							route('pembayaran.tambah', {
 								nisn: siswa.nisn,

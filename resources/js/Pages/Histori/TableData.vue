@@ -3,11 +3,11 @@
 		<thead class="rounded-md">
 			<tr class="h-14">
 				<th>No</th>
+				<th>Tanggal Bayar</th>
 				<th>NISN</th>
 				<th>NIS</th>
 				<th>Nama Siswa</th>
 				<th>Petugas</th>
-				<th>Tanggal Bayar</th>
 				<th>Spp</th>
 				<th>Bulan</th>
 				<th>Tahun</th>
@@ -21,11 +21,11 @@
 				class="border-b border-gray-300"
 			>
 				<td class="font-bold">{{ index + number }}</td>
+				<td>{{ histori.tgl_bayar }}</td>
 				<td>{{ histori.nisn }}</td>
 				<td>{{ histori.siswa.nis }}</td>
 				<td>{{ histori.siswa.nama }}</td>
 				<td>{{ histori.petugas.nama_petugas }}</td>
-				<td>{{ histori.tgl_bayar }}</td>
 				<td>{{ histori.spp.tahun }}</td>
 				<td>{{ histori.bulan_dibayar }}</td>
 				<td>{{ histori.tahun_dibayar }}</td>
@@ -52,6 +52,7 @@
 			</tr>
 		</tbody>
 	</table>
+	<p v-if="!data.data.length" class="text-center my-10">Tidak ada data</p>
 </template>
 
 <script>

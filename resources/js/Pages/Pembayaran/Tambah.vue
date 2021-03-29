@@ -2,7 +2,7 @@
 	<div class="py-12">
 		<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 			<div class="bg-white md:p-10 p-4 rounded-md shadow-md">
-				<form-data :data="data.siswa"></form-data>
+				<form-data :spp="spp" :data="data.siswa"></form-data>
 			</div>
 			<h1 class="font-semibold text-sm mb-5 mt-16 text-gray-400 ml-3">
 				3 Pembayaran Terakhir Siswa
@@ -85,7 +85,7 @@ export default {
 		Pagination,
 	},
 
-	props: ["data", "historiPembayaran"],
+	props: ["data", "historiPembayaran", "spp"],
 
 	mounted() {
 		console.log(this.historiPembayaran);

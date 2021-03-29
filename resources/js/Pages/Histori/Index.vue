@@ -8,7 +8,9 @@
 					<div
 						class="flex flex-col md:flex-row md:items-center justify-between mb-3"
 					>
-						<add-button :href="route('pembayaran')"></add-button>
+						<add-button :href="route('pembayaran')"
+							>Entri Pembayaran</add-button
+						>
 					</div>
 					<!-- table -->
 					<table-data :data="histori"></table-data>
