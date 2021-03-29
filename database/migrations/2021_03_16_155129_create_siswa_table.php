@@ -15,14 +15,14 @@ class CreateSiswaTable extends Migration
     {
         Schema::create('siswa', function (Blueprint $table) {
             $table->string('nisn', 10)->primary();
-            $table->string('nis', 8);
+            $table->string('nis', 8)->unique()->index();
             $table->string('nama', 35);
-            $table->unsignedInteger('id_kelas')->index();
-            $table->foreign('id_kelas')->references('id')->on('kelas');
+            $table->unsignedInteger('id_kelas')->nullable()->index();
+            $table->foreign('id_kelas')->references('id')->on('kelas')->nullOnDelete();
             $table->text('alamat');
             $table->string('no_telp', 13);
-            $table->unsignedInteger('id_spp')->index();
-            $table->foreign('id_spp')->references('id')->on('spp');
+            $table->unsignedInteger('id_spp')->nullable()->index();
+            $table->foreign('id_spp')->references('id')->on('spp')->nullOnDelete();
             $table->timestamps();
         });
     }

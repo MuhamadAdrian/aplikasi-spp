@@ -57,6 +57,13 @@
 						</tr>
 					</tbody>
 				</table>
+				<inertia-link
+					as="button"
+					:href="route('histori.show', route().params.nisn)"
+					class="px-3 py-2 rounded-md bg-indigo-400 hover:bg-indigo-500 text-white text-sm ml-auto mt-4 block"
+				>
+					Tampilkan Semua
+				</inertia-link>
 			</div>
 		</div>
 	</div>

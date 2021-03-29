@@ -151,12 +151,19 @@ class PetugasController extends Controller
      */
     public function destroy($id)
     {
-        Petugas::findOrFail($id)->delete();
-
-        return Redirect::route('petugas')->with('toast', [
-            'message' => 'Data kelas berhasil dihapus', 
-            'success' => true
-        ]);
+        try {
+            Petugas::findOrFail($id)->delete();
+    
+            return Redirect::route('petugas')->with('toast', [
+                'message' => 'Data kelas berhasil dihapus', 
+                'success' => true
+            ]);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('toast', [
+                'message' => 'Pastikan tidak ada transaksi yang dilakukan oleh petugas ini', 
+                'success' => false
+            ]);
+        }
     }
 }
 

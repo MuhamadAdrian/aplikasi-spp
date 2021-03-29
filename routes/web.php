@@ -68,9 +68,12 @@ Route::middleware(['auth', 'verified', 'authadmin'])->group(function () {
         'store' => 'pembayaran.store',
         'destroy' => 'pembayaran.destroy'
     ]);
-    
-    
-    Route::get('/histori-pembayaran', [HistoriController::class, 'index'])->name('histori');
+
+    Route::resource('histori-pembayaran', HistoriController::class)->names([
+        'index' => 'histori',
+        'show' => 'histori.show',
+        'destroy' => 'histori.destroy'
+    ]);
 
     Route::get('/generate-laporan', [LaporanController::class, 'index'])->name('laporan');
 });

@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SppStoreRequest;
 use App\Http\Requests\SppUpdateRequest;
 use App\Models\Spp;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use Throwable;
 
 class SppController extends Controller
 {
@@ -101,7 +103,6 @@ class SppController extends Controller
     {
         $request->validated();
 
-        //dd($request);
         $updated = Spp::where('id', $id)->update([
             'tahun' => $request->tahun,
             'nominal' => $request->nominal,
@@ -128,11 +129,18 @@ class SppController extends Controller
      */
     public function destroy($id)
     {
-        Spp::findOrFail($id)->delete();
+        try{
+            Spp::findOrFail($id)->delete();
 
-        return Redirect::route('spp')->with('toast', [
-            'message' => 'Data spp berhasil dihapus', 
-            'success' => true
-        ]);
+            return Redirect::route('spp')->with('toast', [
+                'message' => 'Data spp berhasil dihapus', 
+                'success' => true
+            ]);
+        }catch(Throwable $error){
+            return redirect()->back()->with('toast', [
+                'message' => 'Maaf spp sedang digunakan',
+                'success' => false
+            ]);
+        }
     }
 }

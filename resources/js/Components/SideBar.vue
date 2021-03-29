@@ -3,7 +3,7 @@
 		<aside
 			ref="sidebar"
 			class="fixed top-0 left-0 bg-white transition-all duration-300 min-h-screen h-full shadow-lg"
-			:class="[!hiden ? 'md:w-72 w-4/5' : 'md:w-24 w-0']"
+			:class="[!hiden ? 'md:w-72 w-4/5' : 'md:w-20 w-0']"
 		>
 			<div class="p-4 flex items-center">
 				<inertia-link :href="route('dashboard')">

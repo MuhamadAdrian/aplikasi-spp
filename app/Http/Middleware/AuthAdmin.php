@@ -52,6 +52,7 @@ class AuthAdmin
                 'spp',
                 'pembayaran',
                 'histori',
+                'histori.show',
                 'laporan',
                 'register',
                 'siswa.tambah',

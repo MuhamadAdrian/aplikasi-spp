@@ -32,7 +32,7 @@ export default {
 			if (val) {
 				setTimeout(() => {
 					this.$page.props.toast = null;
-				}, 2000);
+				}, 4000);
 			}
 		},
 	},

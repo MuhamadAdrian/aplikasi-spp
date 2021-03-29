@@ -15,7 +15,7 @@ class AddIdPetugasToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedInteger('id_petugas')->nullable()->index()->after('name');
-            $table->foreign('id_petugas')->references('id')->on('petugas');
+            $table->foreign('id_petugas')->references('id')->on('petugas')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 

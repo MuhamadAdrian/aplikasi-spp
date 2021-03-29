@@ -37,7 +37,7 @@
 					}"
 					class="w-full block mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
 				>
-					<option disabled :value="null">Pilih Bulan</option>
+					<option disabled hidden :value="null">Pilih Bulan</option>
 					<option
 						v-for="(m, index) in months"
 						:key="index"
@@ -73,7 +73,7 @@
 				<form-input
 					id="id_spp"
 					type="text"
-					class="mt-1 block w-full"
+					class="mt-1 block w-full text-gray-400 cursor-not-allowed"
 					:value="`(${data.spp.tahun}) - ${data.spp.nominal}`"
 					disabled
 					required

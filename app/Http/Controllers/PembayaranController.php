@@ -32,6 +32,7 @@ class PembayaranController extends Controller
         $pembayaran = Pembayaran::where('nisn', $request->nisn)
         ->with(['siswa', 'petugas', 'spp'])
         ->latest('tgl_bayar')
+        ->limit(3)
         ->get();
 
         foreach ($pembayaran as $p) {
@@ -45,11 +46,11 @@ class PembayaranController extends Controller
             ],
             
             'historiPembayaran' => $pembayaran
-            ]);
-        }
+        ]);
+    }
         
-        /**
-         * Store a newly created resource in storage.
+    /**
+     * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -57,19 +58,27 @@ class PembayaranController extends Controller
     public function store(Request $request)
     {
         if (Pembayaran::where('nisn', $request->nisn)
-        ->where('bulan_dibayar', '=', $request->bulan_bayar)
-        ->where('tahun_dibayar', '=', $request->tahun_bayar)
+        ->where('bulan_dibayar', $request->bulan_bayar)
+        ->where('tahun_dibayar', $request->tahun_bayar)
         ->exists() == true) 
         {
-            dd("Oppps data sudah ada");
-            return;
+            return redirect()->back()->with('toast', [
+                'message' => "Siswa ini telah membayar untuk bulan $request->bulan_bayar $request->tahun_bayar",
+                'success' => false
+            ]);
         }
 
+        $request->validate([
+            'nisn' => 'required',
+            'bulan_bayar' => 'required|string',
+            'tahun_bayar' => 'required|string',
+            'id_spp' => 'required',
+            'jumlah_bayar' => 'required|integer'
+        ]);
         
         Pembayaran::create([
             'id_petugas' => auth()->user()->petugas->id,
             'nisn' => $request->nisn,
-            'tgl_bayar' => Carbon::now()->toDateTimeString(),
             'bulan_dibayar' => $request->bulan_bayar,
             'tahun_dibayar' => $request->tahun_bayar,
             'id_spp' => $request->id_spp,
@@ -106,11 +115,11 @@ class PembayaranController extends Controller
 
     }
         
-        /**
-         * Update the specified resource in storage.
-         *
-         * @param  \Illuminate\Http\Request  $request
-         * @param  int  $id
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)

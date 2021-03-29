@@ -9,6 +9,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
@@ -40,23 +41,24 @@ class RegisteredUserController extends Controller
             'password' => 'required|string|confirmed|min:8',
         ]);
 
-        $petugas = Petugas::create([
-            'nama_petugas' => $request->name,
-            'username' => $request->username,
-            'password' => $request->password,
-            'level' => 'admin'
-        ]);
-
-        Auth::login($user = User::create([
-            'name' => $request->name,
-            'username' => $request->username,
-            'password' => Hash::make($request->password),
-            'id_petugas' => $petugas->id
-        ]));
-
-
-
-        event(new Registered($user));
+        DB::transaction(function () use($request){
+            
+            $petugas = Petugas::create([
+                'nama_petugas' => $request->name,
+                'username' => $request->username,
+                'password' => $request->password,
+                'level' => 'admin'
+            ]);
+    
+            Auth::login($user = User::create([
+                'name' => $request->name,
+                'username' => $request->username,
+                'password' => Hash::make($request->password),
+                'id_petugas' => $petugas->id
+            ]));
+            
+            event(new Registered($user));
+        });
 
         return redirect(RouteServiceProvider::HOME);
     }

@@ -1,5 +1,5 @@
 <template>
-	<div class="p-4 mt-4">
+	<div class="mt-4">
 		<div v-if="$page.props.auth.user.level == 'admin'">
 			<NavLink
 				:href="route('dashboard')"
@@ -91,7 +91,10 @@
 			<NavLink
 				:is-sidebar-hidden="isSidebarHidden"
 				:href="route('pembayaran')"
-				:active="route().current('pembayaran')"
+				:active="
+					route().current('pembayaran') ||
+					route().current('pembayaran.tambah')
+				"
 				popup-text="Entri Transaksi"
 			>
 				<icon class="ml-1" name="entri-icon"></icon>

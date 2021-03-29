@@ -3,7 +3,7 @@
 		<navbar
 			@hamburgerClick="hamburgerClicked"
 			class="transition-all duration-300"
-			:class="[hideSideBar ? 'md:ml-72 ml-4/5' : 'md:ml-24 ml-0']"
+			:class="[hideSideBar ? 'md:ml-72 ml-4/5' : 'md:ml-20 ml-0']"
 		></navbar>
 		<side-bar class="md:block hidden" :hide="hideSideBar"></side-bar>
 		<!-- Mobile -->
@@ -20,7 +20,7 @@
 		<!-- Mobile -->
 		<main
 			class="transition-all duration-300 bg-gray-50 min-h-screen h-full"
-			:class="[hideSideBar ? 'md:ml-72 ml-4/5' : 'md:ml-24 ml-0']"
+			:class="[hideSideBar ? 'md:ml-72 ml-4/5' : 'md:ml-20 ml-0']"
 		>
 			<slot></slot>
 			<toast :toast="$page.props.toast"></toast>

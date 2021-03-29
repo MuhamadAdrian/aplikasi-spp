@@ -15,7 +15,7 @@ class AddNisnSiswaToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('nisn_siswa')->nullable()->index()->after('id_petugas');
-            $table->foreign('nisn_siswa')->references('nisn')->on('siswa');
+            $table->foreign('nisn_siswa')->references('nisn')->on('siswa')->cascadeOnDelete()->cascadeOnUpdate();
 
         });
     }

@@ -5,9 +5,9 @@
 		@mouseleave="mouseLeave()"
 		:href="href"
 		:class="classes"
-		class="relative w-full flex justify-between items-center px-4 active:transform active:scale-105 py-3 text-sm md:text-base rounded-md transition-all duration-100 mb-2"
+		class="relative w-full flex justify-between items-center px-4 active:transform active:scale-105 py-4 text-sm md:text-base transition-all duration-100"
 	>
-		<span class="flex items-center">
+		<span class="flex items-center mx-2">
 			<slot />
 		</span>
 		<spin-animation :animation-showed="animationShowed"></spin-animation>
@@ -43,8 +43,8 @@ export default {
 	computed: {
 		classes() {
 			return this.active
-				? "bg-indigo-400 text-white hover:bg-indigo-500"
-				: "bg-gray-50 hover:bg-gray-100 text-gray-600";
+				? "bg-gray-50 text-white text-indigo-600"
+				: "hover:bg-gray-50 text-gray-600";
 		},
 	},
 
