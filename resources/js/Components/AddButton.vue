@@ -5,7 +5,7 @@
 			as="button"
 			type="button"
 			preserve-scroll
-			class="rounded-md p-3 bg-indigo-400 hover:bg-indigo-500 transition-colors duration-100 text-white"
+			class="rounded-md p-3 bg-indigo-400 hover:bg-indigo-500 transition-colors duration-100 text-white shadow-md"
 		>
 			<icon name="add-icon"></icon>
 		</inertia-link>

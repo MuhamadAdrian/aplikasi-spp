@@ -24407,6 +24407,14 @@ select {
   table-layout: fixed;
 }
 
+.hover\:table-auto:hover {
+  table-layout: auto;
+}
+
+.hover\:table-fixed:hover {
+  table-layout: fixed;
+}
+
 .text-left {
   text-align: left;
 }
@@ -55282,6 +55290,14 @@ input:focus, button:focus, textarea:focus {
     table-layout: fixed;
   }
 
+  .sm\:hover\:table-auto:hover {
+    table-layout: auto;
+  }
+
+  .sm\:hover\:table-fixed:hover {
+    table-layout: fixed;
+  }
+
   .sm\:text-left {
     text-align: left;
   }
@@ -86042,6 +86058,14 @@ input:focus, button:focus, textarea:focus {
   }
 
   .md\:table-fixed {
+    table-layout: fixed;
+  }
+
+  .md\:hover\:table-auto:hover {
+    table-layout: auto;
+  }
+
+  .md\:hover\:table-fixed:hover {
     table-layout: fixed;
   }
 
@@ -116808,6 +116832,14 @@ input:focus, button:focus, textarea:focus {
     table-layout: fixed;
   }
 
+  .lg\:hover\:table-auto:hover {
+    table-layout: auto;
+  }
+
+  .lg\:hover\:table-fixed:hover {
+    table-layout: fixed;
+  }
+
   .lg\:text-left {
     text-align: left;
   }
@@ -147571,6 +147603,14 @@ input:focus, button:focus, textarea:focus {
     table-layout: fixed;
   }
 
+  .xl\:hover\:table-auto:hover {
+    table-layout: auto;
+  }
+
+  .xl\:hover\:table-fixed:hover {
+    table-layout: fixed;
+  }
+
   .xl\:text-left {
     text-align: left;
   }
@@ -178331,6 +178371,14 @@ input:focus, button:focus, textarea:focus {
   }
 
   .\32xl\:table-fixed {
+    table-layout: fixed;
+  }
+
+  .\32xl\:hover\:table-auto:hover {
+    table-layout: auto;
+  }
+
+  .\32xl\:hover\:table-fixed:hover {
     table-layout: fixed;
   }
 

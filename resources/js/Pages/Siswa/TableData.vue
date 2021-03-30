@@ -14,7 +14,7 @@
 			<tr
 				v-for="(siswa, index) in data.data"
 				:key="index"
-				class="border-b border-gray-300"
+				class="border-b border-gray-300 hover:bg-gray-50 transition-colors duration-200"
 			>
 				<td class="font-bold">{{ index + number }}</td>
 				<td>{{ siswa.nisn }}</td>

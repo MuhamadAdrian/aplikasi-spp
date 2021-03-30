@@ -74,9 +74,12 @@
 					required
 					v-model="form.id_spp"
 					:disabled="data.spp"
-					:class="{
-						'border-red-500': form.errors.id_spp,
-					}"
+					:class="[
+						{
+							'border-red-500': form.errors.id_spp,
+						},
+						{ 'text-gray-400': data.spp },
+					]"
 					class="w-full block mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
 				>
 					<option selected disabled hidden :value="null">
@@ -115,14 +118,24 @@
 					id="jumlah_bayar"
 					type="number"
 					class="mt-1 block w-full"
+					:class="{ 'text-gray-400': automaticFill }"
 					v-model="form.jumlah_bayar"
+					:value="automaticFill ? data.spp.nominal : null"
 					required
 					autocomplete="jumlah_bayar"
+					:disabled="automaticFill"
 				/>
 				<form-error
 					class="mt-3"
 					:message="form.errors.jumlah_bayar"
 				></form-error>
+				<label class="flex items-center mt-3">
+					<form-checkbox
+						name="remember"
+						v-model:checked="automaticFill"
+					/>
+					<span class="ml-2 text-sm text-gray-600">Otomatis Isi</span>
+				</label>
 			</div>
 		</div>
 	</form>
@@ -137,6 +150,7 @@ import Icon from "@/Components/Icon";
 import SpinAnimation from "@/Components/SpinAnimation.vue";
 import Fade from "@/Components/Fade";
 import months from "../../Helper/month";
+import FormCheckbox from "@/Components/Checkbox";
 
 export default {
 	components: {
@@ -147,6 +161,7 @@ export default {
 		Icon,
 		SpinAnimation,
 		Fade,
+		FormCheckbox,
 	},
 
 	props: {
@@ -174,8 +189,20 @@ export default {
 				jumlah_bayar: null,
 			}),
 
+			automaticFill: true,
+
 			months: months,
 		};
+	},
+
+	watch: {
+		automaticFill(val) {
+			if (val) {
+				this.form.jumlah_bayar = this.data.spp.nominal;
+			} else {
+				this.form.jumlah_bayar = null;
+			}
+		},
 	},
 
 	methods: {

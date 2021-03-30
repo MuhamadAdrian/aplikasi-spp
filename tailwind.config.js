@@ -21,6 +21,7 @@ module.exports = {
             opacity: ["disabled"],
             transform: ["active"],
             scale: ["active"],
+            tableLayout: ["hover"],
         },
     },
 

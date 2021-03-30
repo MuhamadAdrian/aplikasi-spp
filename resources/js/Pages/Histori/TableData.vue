@@ -4,32 +4,26 @@
 			<tr class="h-14">
 				<th>No</th>
 				<th>Tanggal Bayar</th>
-				<th>NISN</th>
-				<th>NIS</th>
-				<th>Nama Siswa</th>
-				<th>Petugas</th>
-				<th>Spp</th>
 				<th>Bulan</th>
 				<th>Tahun</th>
+				<th>Spp</th>
 				<th>Jumlah</th>
+				<th>Petugas</th>
 			</tr>
 		</thead>
 		<tbody class="text-center mt-5 text-sm">
 			<tr
 				v-for="(histori, index) in data.data"
 				:key="index"
-				class="border-b border-gray-300"
+				class="border-b border-gray-300 hover:bg-gray-50 transition-colors duration-200"
 			>
 				<td class="font-bold">{{ index + number }}</td>
 				<td>{{ histori.tgl_bayar }}</td>
-				<td>{{ histori.nisn }}</td>
-				<td>{{ histori.siswa.nis }}</td>
-				<td>{{ histori.siswa.nama }}</td>
-				<td>{{ histori.petugas.nama_petugas }}</td>
-				<td>{{ histori.spp.tahun }}</td>
 				<td>{{ histori.bulan_dibayar }}</td>
 				<td>{{ histori.tahun_dibayar }}</td>
+				<td>{{ histori.spp.tahun }}</td>
 				<td>{{ histori.jumlah_dibayar }}</td>
+				<td>{{ histori.petugas.nama_petugas }}</td>
 				<td class="flex justify-center items-center h-12">
 					<!--<inertia-link
 						:href="route('data-kelas.edit', kelas.id)"

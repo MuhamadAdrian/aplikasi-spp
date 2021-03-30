@@ -7,13 +7,14 @@
 				<th>NIS</th>
 				<th>Nama</th>
 				<th>Kelas</th>
+				<th>Aksi</th>
 			</tr>
 		</thead>
 		<tbody v-if="data" class="text-center mt-5 text-sm table-row-group">
 			<tr
 				v-for="(siswa, index) in data.data"
 				:key="index"
-				class="border-b border-gray-300 table-row"
+				class="border-b border-gray-300 table-row hover:bg-gray-50 transition-colors duration-200"
 			>
 				<td class="font-bold">{{ index + number }}</td>
 				<td>{{ siswa.nisn }}</td>
@@ -25,7 +26,7 @@
 					<inertia-link
 						:href="route('pembayaran.tambah', { nisn: siswa.nisn })"
 						as="button"
-						class="text-xs bg-indigo-400 text-white px-3 py-2 rounded-md"
+						class="text-xs bg-indigo-400 text-white px-3 py-2 rounded-md hover:bg-indigo-500 transition-colors duration-200"
 					>
 						Pilih Siswa
 					</inertia-link>

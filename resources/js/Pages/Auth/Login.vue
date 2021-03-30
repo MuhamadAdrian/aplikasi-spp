@@ -1,10 +1,4 @@
 <template>
-	<breeze-validation-errors class="mb-4" />
-
-	<div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-		{{ status }}
-	</div>
-
 	<form @submit.prevent="submit">
 		<div>
 			<breeze-label for="username" value="Username" />
@@ -16,7 +10,12 @@
 				required
 				autofocus
 				autocomplete="username"
+				placeholder="account@spp"
 			/>
+			<form-error
+				class="mt-3"
+				:message="form.errors.username"
+			></form-error>
 		</div>
 
 		<div class="mt-4">
@@ -29,6 +28,10 @@
 				required
 				autocomplete="current-password"
 			/>
+			<form-error
+				class="mt-3"
+				:message="form.errors.password"
+			></form-error>
 		</div>
 
 		<div class="block mt-4">
@@ -37,25 +40,18 @@
 					name="remember"
 					v-model:checked="form.remember"
 				/>
-				<span class="ml-2 text-sm text-gray-600">Remember me</span>
+				<span class="ml-2 text-sm text-gray-600">Ingat saya</span>
 			</label>
 		</div>
 
-		<div class="flex items-center justify-end mt-4">
-			<inertia-link
-				v-if="canResetPassword"
-				:href="route('password.request')"
-				class="underline text-sm text-gray-600 hover:text-gray-900"
-			>
-				Forgot your password?
-			</inertia-link>
-
+		<div class="mt-4">
 			<breeze-button
-				class="ml-4"
+				class="bg-indigo-400 py-3 text-center justify-center hover:bg-indigo-500 block w-full"
 				:class="{ 'opacity-25': form.processing }"
 				:disabled="form.processing"
 			>
-				Log in
+				<icon name="login-icon"></icon>
+				<p class="ml-2">Masuk</p>
 			</breeze-button>
 		</div>
 	</form>
@@ -67,7 +63,8 @@ import BreezeGuestLayout from "@/Layouts/Guest";
 import BreezeInput from "@/Components/Input";
 import BreezeCheckbox from "@/Components/Checkbox";
 import BreezeLabel from "@/Components/Label";
-import BreezeValidationErrors from "@/Components/ValidationErrors";
+import FormError from "@/Components/InputError";
+import Icon from "@/Components/Icon";
 
 export default {
 	layout: BreezeGuestLayout,
@@ -77,7 +74,8 @@ export default {
 		BreezeInput,
 		BreezeCheckbox,
 		BreezeLabel,
-		BreezeValidationErrors,
+		FormError,
+		Icon,
 	},
 
 	props: {
