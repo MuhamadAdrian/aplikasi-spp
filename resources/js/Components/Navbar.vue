@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<nav class="bg-white border-b border-gray-100">
+		<nav class="bg-white border-b border-gray-100 md:block hidden">
 			<!-- Primary Navigation Menu -->
 			<div class="md:px-5 lg:px-6 px-4">
 				<div class="flex justify-between h-16">

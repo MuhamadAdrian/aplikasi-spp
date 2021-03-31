@@ -19,7 +19,7 @@
 		></hamburger-mobile>
 		<!-- Mobile -->
 		<main
-			class="transition-all duration-300 bg-gray-50 min-h-screen h-full"
+			class="transition-all duration-300 bg-gray-50 min-h-screen h-full bg"
 			:class="[hideSideBar ? 'md:ml-72 ml-4/5' : 'md:ml-20 ml-0']"
 		>
 			<slot></slot>
@@ -98,3 +98,14 @@ export default {
 	},
 };
 </script>
+
+<style scoped>
+.bg {
+	background: linear-gradient(
+			0deg,
+			rgba(249, 249, 249, 0.9),
+			rgba(249, 249, 249, 0.9)
+		),
+		url("/img/patternpad1.jpeg");
+}
+</style>

@@ -39,7 +39,7 @@ class SiswaController extends Controller
                 $query->where('nama', 'LIKE', '%'.$search.'%')
                 ->orWhere('nisn', 'LIKE', '%'.$search.'%')
                 ->orWhere('nis', 'LIKE', '%'.$search.'%');
-            })->with('kelas')->latest()->paginate(5)
+            })->with('kelas')->latest()->paginate(10)
         ]);
     }
 

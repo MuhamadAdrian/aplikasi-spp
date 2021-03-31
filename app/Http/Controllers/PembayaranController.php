@@ -86,8 +86,8 @@ class PembayaranController extends Controller
             ]);
         }catch(\Throwable $th){
             return Redirect::route('pembayaran.tambah', ['nisn' => $request->nisn])->with('toast', [
-                'message' => 'Pastikan Siswa ini memiliki tahun spp yang telah diinput sebelumnya', 
-                'success' => false
+               'message' => 'Pastikan Siswa ini memiliki tahun spp yang telah diinput sebelumnya', 
+               'success' => false
             ]);
         }
     }

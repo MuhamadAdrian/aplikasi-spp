@@ -120,7 +120,6 @@
 					class="mt-1 block w-full"
 					:class="{ 'text-gray-400': automaticFill }"
 					v-model="form.jumlah_bayar"
-					:value="automaticFill ? data.spp.nominal : null"
 					required
 					autocomplete="jumlah_bayar"
 					:disabled="automaticFill"
@@ -189,7 +188,7 @@ export default {
 				jumlah_bayar: null,
 			}),
 
-			automaticFill: true,
+			automaticFill: false,
 
 			months: months,
 		};
