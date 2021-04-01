@@ -83,12 +83,14 @@ class AuthAdmin
                 'pembayaran', //pembayaran route
                 'pembayaran.tambah',
                 'pembayaran.store',
+                'pembayaran.update',
             ],
             
             'petugas' => [
                 'pembayaran', //pembayaran route
                 'pembayaran.tambah',
                 'pembayaran.store',
+                'pembayaran.update',
                 'histori', //histori route
                 'histori.show',
             ],

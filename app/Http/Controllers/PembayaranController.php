@@ -29,11 +29,10 @@ class PembayaranController extends Controller
         $pembayaran = Pembayaran::where('nisn', $request->nisn)
         ->with(['siswa', 'petugas', 'spp'])
         ->latest('tgl_bayar')
-        ->limit(3)
+        ->limit(4)
         ->get();
 
         foreach ($pembayaran as $p) {
-            $p->tunggakan = $p->spp->nominal - $p->jumlah_dibayar;
             $p->tgl_bayar = Carbon::parse($p->tgl_bayar)->isoFormat('D MMMM Y');
         }
         
@@ -51,11 +50,11 @@ class PembayaranController extends Controller
 
     public function store(Request $request)
     {
-        try{
+
             if (Pembayaran::where('nisn', $request->nisn)
             ->where('bulan_dibayar', $request->bulan_bayar)
             ->where('tahun_dibayar', $request->tahun_bayar)
-            ->exists() == true) 
+            ->exists()) 
             {
                 return redirect()->back()->with('toast', [
                     'message' => "Siswa ini telah membayar untuk bulan $request->bulan_bayar $request->tahun_bayar",
@@ -65,11 +64,12 @@ class PembayaranController extends Controller
     
             $request->validate([
                 'nisn' => 'required',
-                'bulan_bayar' => 'required|string',
-                'tahun_bayar' => 'required|string',
+                'bulan_bayar' => 'required|string|max:9',
+                'tahun_bayar' => 'required|string|max:4',
                 'id_spp' => 'required',
-                'jumlah_bayar' => 'required|integer'
-            ]);
+                'jumlah_bayar' => 'required|integer',
+                'jumlah_masuk' => 'required',
+            ], Siswa::message);
             
             Pembayaran::create([
                 'id_petugas' => auth()->user()->petugas->id,
@@ -77,19 +77,15 @@ class PembayaranController extends Controller
                 'bulan_dibayar' => $request->bulan_bayar,
                 'tahun_dibayar' => $request->tahun_bayar,
                 'id_spp' => $request->id_spp,
-                'jumlah_dibayar' => $request->jumlah_bayar
+                'jumlah_dibayar' => $request->jumlah_bayar,
+                'jumlah_masuk' => $request->jumlah_masuk,
+                'status' => $request->jumlah_masuk == $request->jumlah_bayar ? 'lunas' : 'belum lunas'
             ]);
     
             return Redirect::route('histori.show', $request->nisn)->with('toast', [
                 'message' => 'Data Pembayaran Berhasil ditambahkan', 
                 'success' => true
             ]);
-        }catch(\Throwable $th){
-            return Redirect::route('pembayaran.tambah', ['nisn' => $request->nisn])->with('toast', [
-               'message' => 'Pastikan Siswa ini memiliki tahun spp yang telah diinput sebelumnya', 
-               'success' => false
-            ]);
-        }
     }
     
 
@@ -107,7 +103,15 @@ class PembayaranController extends Controller
 
     public function update(Request $request, $id)
     {
-        
+        Pembayaran::where('id', $id)->update([
+            'jumlah_masuk' => $request->jumlah_dibayar,
+            'status' => 'lunas'
+        ]);
+
+        return back()->with('toast', [
+            'message' => 'Pelunasan Berhasil',
+            'success' => true
+        ]);
     }
     
 

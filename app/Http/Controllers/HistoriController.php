@@ -23,15 +23,24 @@ class HistoriController extends Controller
 
     public function index()
     {   
+        $pembayaran = $this->pembayaran->paginate(5);
+        foreach ($pembayaran->items() as $p) {
+            $p->tunggakan = $p->jumlah_dibayar - $p->jumlah_masuk;
+        }
         return Inertia::render('Histori/Index', [
-            'histori' => $this->pembayaran->paginate(5)
+            'histori' => $pembayaran
         ]);
     }
 
     public function show($nisn)
     {   
+        $pembayaran = $this->pembayaran->where('nisn', $nisn)->paginate(5);
+        foreach ($pembayaran->items() as $p) {
+            $p->tunggakan = $p->jumlah_dibayar - $p->jumlah_masuk;
+        }
+
         return Inertia::render('Histori/Detail', [
-            'detail' => $this->pembayaran->where('nisn', $nisn)->paginate(5),
+            'detail' => $pembayaran,
             'siswa' => Siswa::with(['kelas', 'spp'])->where('nisn', $nisn)->firstOrFail()
         ]);
     }

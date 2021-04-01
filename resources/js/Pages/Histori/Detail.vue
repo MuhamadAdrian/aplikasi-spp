@@ -33,8 +33,15 @@
 						<tr class="h-10">
 							<td class="font-semibold">SPP</td>
 							<td>:</td>
-							<td>
+							<td v-if="siswa.spp">
 								{{ siswa.spp.tahun }} - {{ siswa.spp.nominal }}
+							</td>
+							<td v-else>
+								<inertia-link
+									:href="route('siswa.edit', siswa.nisn)"
+									class="text-sm text-indigo-500 underline"
+									>Update Data Siswa</inertia-link
+								>
 							</td>
 						</tr>
 						<tr class="h-10">
@@ -92,7 +99,7 @@
 			<!--dekstop-->
 
 			<!--mobile-->
-			<div class="p-4">
+			<div class="p-4 md:hidden">
 				<div
 					v-for="histori in detail.data"
 					:key="histori.id"
@@ -119,29 +126,53 @@
 
 						<div class="main-content grid grid-cols-2 p-4">
 							<div
-								class="col-span-1 mb-2 font-semibold text-gray-600"
+								class="col-span-1 mt-2 font-semibold text-gray-600"
+							>
+								Nama Siswa
+							</div>
+							<div class="col-span-1 mt-2 text-gray-600">
+								{{ histori.siswa.nama }}
+							</div>
+							<div
+								class="col-span-1 mt-2 font-semibold text-gray-600"
 							>
 								Nama Petugas
 							</div>
-							<div class="col-span-1 mb-2 text-gray-600">
+							<div class="col-span-1 mt-2 text-gray-600">
 								{{ histori.petugas.nama_petugas }}
 							</div>
 							<div
-								class="col-span-1 mb-2 font-semibold text-gray-600"
+								class="col-span-1 mt-2 font-semibold text-gray-600"
 							>
-								SPP tahun
+								Yang Harus Dibayar
 							</div>
-							<div class="col-span-1 mb-2 text-gray-600">
-								{{ histori.spp.tahun }} -
-								{{ histori.spp.nominal }}
+							<div class="col-span-1 mt-2 text-gray-600">
+								{{ histori.jumlah_dibayar }}
 							</div>
 							<div
-								class="col-span-1 mb-2 font-semibold text-gray-600"
+								class="col-span-1 mt-2 font-semibold text-gray-600"
 							>
-								Jumlah Dibayar
+								Uang Masuk
 							</div>
-							<div class="col-span-1 mb-2 text-gray-600">
-								{{ histori.jumlah_dibayar }}
+							<div class="col-span-1 mt-2 text-gray-600">
+								{{ histori.jumlah_masuk }}
+							</div>
+							<div
+								class="col-span-1 mt-2 font-semibold text-gray-600"
+							>
+								Status
+							</div>
+							<div class="col-span-1 mt-2 text-gray-600">
+								<span
+									:class="[
+										histori.status == 'lunas'
+											? 'bg-green-400'
+											: 'bg-yellow-400',
+									]"
+									class="px-2 py-1 rounded-md text-white"
+								>
+									{{ histori.status }}
+								</span>
 							</div>
 						</div>
 					</div>
@@ -162,7 +193,6 @@ import Icon from "@/Components/Icon";
 
 export default {
 	layout: MainLayout,
-
 	components: {
 		TableData,
 		Pagination,

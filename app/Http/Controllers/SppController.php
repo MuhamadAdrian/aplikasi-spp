@@ -101,10 +101,12 @@ class SppController extends Controller
                 'success' => true
             ]);
         }catch(Throwable $error){
-            return redirect()->back()->with('toast', [
-                'message' => 'Maaf spp sedang digunakan',
-                'success' => false
-            ]);
+            if ($error->getCode() == 23000) {
+                return redirect()->back()->with('toast', [
+                   'message' => 'Maaf spp sedang digunakan',
+                   'success' => false
+                ]);
+            }
         }
     }
 }

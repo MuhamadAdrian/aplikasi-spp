@@ -73,7 +73,7 @@
 				<select
 					required
 					v-model="form.id_spp"
-					:disabled="data.spp"
+					disabled
 					:class="[
 						{
 							'border-red-500': form.errors.id_spp,
@@ -91,7 +91,7 @@
 						:value="eachSpp.id"
 					>
 						Tahun {{ eachSpp.tahun }} - Nominal
-						{{ eachSpp.nominal }}
+						{{ currency(eachSpp.nominal) }}
 					</option>
 				</select>
 				<p v-if="spp.length == 0" class="text-xs text-red-600 mt-5">
@@ -113,20 +113,20 @@
 			</div>
 
 			<div class="mt-4">
-				<input-label for="jumlah_bayar" value="Jumlah Bayar" />
+				<input-label for="jumlah_masuk" value="Jumlah Masuk" />
 				<form-input
-					id="jumlah_bayar"
+					id="jumlah_masuk"
 					type="number"
 					class="mt-1 block w-full"
 					:class="{ 'text-gray-400': automaticFill }"
-					v-model="form.jumlah_bayar"
+					v-model="form.jumlah_masuk"
 					required
 					autocomplete="jumlah_bayar"
 					:disabled="automaticFill"
 				/>
 				<form-error
 					class="mt-3"
-					:message="form.errors.jumlah_bayar"
+					:message="form.errors.jumlah_masuk"
 				></form-error>
 				<label class="flex items-center mt-3">
 					<form-checkbox
@@ -150,6 +150,7 @@ import SpinAnimation from "@/Components/SpinAnimation.vue";
 import Fade from "@/Components/Fade";
 import months from "../../Helper/month";
 import FormCheckbox from "@/Components/Checkbox";
+import currency from "@/Helper/currency.js";
 
 export default {
 	components: {
@@ -162,6 +163,8 @@ export default {
 		Fade,
 		FormCheckbox,
 	},
+
+	mixins: [currency],
 
 	props: {
 		edit: {
@@ -185,7 +188,8 @@ export default {
 				bulan_bayar: null,
 				tahun_bayar: null,
 				id_spp: this.data.spp ? this.data.spp.id : null,
-				jumlah_bayar: null,
+				jumlah_bayar: this.data.spp ? this.data.spp.nominal : null,
+				jumlah_masuk: null,
 			}),
 
 			automaticFill: false,
@@ -197,10 +201,16 @@ export default {
 	watch: {
 		automaticFill(val) {
 			if (val) {
-				this.form.jumlah_bayar = this.data.spp.nominal;
+				this.form.jumlah_masuk = this.data.spp.nominal;
 			} else {
-				this.form.jumlah_bayar = null;
+				this.form.jumlah_masuk = null;
 			}
+		},
+
+		form: {
+			jumlah_masuk(value) {
+				this.form.jumlah_masuk = this.currency(value);
+			},
 		},
 	},
 

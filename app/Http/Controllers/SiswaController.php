@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SiswaStoreRequest;
 use App\Http\Requests\SiswaUpdateRequest;
 use App\Models\Kelas;
+use App\Models\Pembayaran;
 use App\Models\Siswa;
 use App\Models\Spp;
 use Illuminate\Http\Request;
@@ -181,9 +182,10 @@ class SiswaController extends Controller
      */
     public function destroy($nisn)
     {
+
         Siswa::findOrFail($nisn)->delete();
 
-        return Redirect::route('siswa')->with('toast', [
+        return back()->with('toast', [
             'message' => 'Data dan akun siswa berhasil dihapus', 
             'success' => true
         ]);

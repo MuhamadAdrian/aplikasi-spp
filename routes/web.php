@@ -82,7 +82,8 @@ Route::middleware(['auth', 'verified', 'authadmin'])->group(function () {
         'index' => 'pembayaran',
         'create' => 'pembayaran.tambah',
         'store' => 'pembayaran.store',
-        'destroy' => 'pembayaran.destroy'
+        'destroy' => 'pembayaran.destroy',
+        'update' => 'pembayaran.update'
     ]);
 
     Route::resource('histori-pembayaran', HistoriController::class)->names([
