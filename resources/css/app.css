@@ -29,4 +29,21 @@ input, button, textarea{
     @apply opacity-0 transform translate-x-10
 }
 
+*::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: #fff;
+  }
+   
+  *::-webkit-scrollbar-thumb {
+    background: #c3c8fc;
+    border-radius: 20px;
+  }
+  
+  *::-webkit-scrollbar-thumb:hover {
+    background: #6d7aee; 
+  }
+
 

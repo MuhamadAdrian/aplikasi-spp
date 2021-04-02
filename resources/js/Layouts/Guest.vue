@@ -3,10 +3,11 @@
 		class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg"
 	>
 		<div>
-			<inertia-link href="/">
+			<inertia-link class="flex flex-col items-center" href="/">
 				<breeze-application-logo
 					class="w-20 h-20 fill-current text-gray-500"
 				/>
+				<p class="text-xl">APLIKASI SPP</p>
 			</inertia-link>
 		</div>
 

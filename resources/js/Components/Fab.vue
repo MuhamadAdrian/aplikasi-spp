@@ -1,7 +1,7 @@
 <template>
 	<button
 		@click="toggleSideBarMobile"
-		class="md:hidden p-4 bg-indigo-600 text-white rounded-full m-4 fixed bottom-0 right-0"
+		class="md:hidden p-4 bg-indigo-600 text-white rounded-full m-4 fixed bottom-0 right-0 z-40"
 	>
 		<svg
 			ref="anu"

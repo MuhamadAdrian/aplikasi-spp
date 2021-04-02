@@ -1,6 +1,7 @@
 <template>
 	<div class="py-12">
 		<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+			<filter-data></filter-data>
 			<div class="information md:block hidden">
 				<h2
 					class="rounded-md mb-5 text-gray-400 text-sm font-semibold ml-3"
@@ -34,7 +35,8 @@
 							<td class="font-semibold">SPP</td>
 							<td>:</td>
 							<td v-if="siswa.spp">
-								{{ siswa.spp.tahun }} - {{ siswa.spp.nominal }}
+								{{ siswa.spp.tahun }} -
+								{{ currency(siswa.spp.nominal) }}
 							</td>
 							<td v-else>
 								<inertia-link
@@ -99,7 +101,8 @@
 			<!--dekstop-->
 
 			<!--mobile-->
-			<div class="p-4 md:hidden">
+
+			<div v-if="!$page.props.auth.user.level" class="p-4 md:hidden">
 				<div
 					v-for="histori in detail.data"
 					:key="histori.id"
@@ -147,7 +150,7 @@
 								Yang Harus Dibayar
 							</div>
 							<div class="col-span-1 mt-2 text-gray-600">
-								{{ histori.jumlah_dibayar }}
+								{{ currency(histori.jumlah_dibayar) }}
 							</div>
 							<div
 								class="col-span-1 mt-2 font-semibold text-gray-600"
@@ -155,7 +158,7 @@
 								Uang Masuk
 							</div>
 							<div class="col-span-1 mt-2 text-gray-600">
-								{{ histori.jumlah_masuk }}
+								{{ currency(histori.jumlah_masuk) }}
 							</div>
 							<div
 								class="col-span-1 mt-2 font-semibold text-gray-600"
@@ -190,6 +193,8 @@ import Pagination from "@/Components/Pagination";
 import AddButton from "@/Components/AddButton";
 import SearchInput from "@/Components/SearchInput";
 import Icon from "@/Components/Icon";
+import currency from "@/Helper/currency.js";
+import FilterData from "@/Components/Filter";
 
 export default {
 	layout: MainLayout,
@@ -199,7 +204,10 @@ export default {
 		AddButton,
 		SearchInput,
 		Icon,
+		FilterData,
 	},
+
+	mixins: [currency],
 
 	props: ["detail", "siswa"],
 

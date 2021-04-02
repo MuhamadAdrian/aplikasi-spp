@@ -18,7 +18,7 @@ class SppController extends Controller
         return Inertia::render('Spp/Index', [
             'spp' => Spp::when($request->search, function($query, $search){
                 $query->where('tahun', 'LIKE', '%'.$search.'%');
-            })->orderBy('tahun', 'desc')->paginate(5)
+            })->orderBy('tahun', 'desc')->paginate(10)
         ]);
     }
 
@@ -72,21 +72,14 @@ class SppController extends Controller
     {
         $request->validated();
 
-        $updated = Spp::where('id', $id)->update([
+        Spp::where('id', $id)->update([
             'tahun' => $request->tahun,
             'nominal' => $request->nominal,
         ]);
 
-        if ($updated) {
-            return Redirect::route('spp')->with('toast', [
-                'message' => 'Data berhasil diubah', 
-                'success' => true
-            ]);
-        }
-            
-        return Redirect::route('spp.edit', $id) ->with('toast', [
-            'message' => 'Tidak ada data yang dirubah', 
-            'success' => false
+        return Redirect::route('spp')->with('toast', [
+            'message' => 'Data berhasil diubah', 
+            'success' => true
         ]);
     }
     

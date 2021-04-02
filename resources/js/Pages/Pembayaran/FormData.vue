@@ -206,12 +206,6 @@ export default {
 				this.form.jumlah_masuk = null;
 			}
 		},
-
-		form: {
-			jumlah_masuk(value) {
-				this.form.jumlah_masuk = this.currency(value);
-			},
-		},
 	},
 
 	methods: {

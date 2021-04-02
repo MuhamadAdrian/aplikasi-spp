@@ -1,15 +1,11 @@
 <template>
 	<div class="mt-4">
 		<div v-if="$page.props.auth.user.level == 'admin'">
-			<p v-if="!hideText" class="text-xs text-gray-400 ml-3 px-4">
-				Utama
-			</p>
 			<NavLink
 				:href="route('dashboard')"
 				:active="route().current('dashboard')"
 				popup-text="Dashboard"
 				:is-sidebar-hidden="isSidebarHidden"
-				class="mb-3"
 			>
 				<icon class="ml-1" name="dashboard-icon"></icon>
 				<fade-slide>
@@ -18,7 +14,6 @@
 					>
 				</fade-slide>
 			</NavLink>
-			<p v-if="!hideText" class="text-xs text-gray-400 ml-3 px-4">Data</p>
 			<NavLink
 				:href="route('siswa')"
 				:active="
@@ -83,7 +78,6 @@
 				"
 				popup-text="Data Spp"
 				:is-sidebar-hidden="isSidebarHidden"
-				class="mb-3"
 			>
 				<icon class="ml-1" name="spp-icon"></icon>
 				<fade-slide>
@@ -92,10 +86,6 @@
 					</span>
 				</fade-slide>
 			</NavLink>
-
-			<p v-if="!hideText" class="text-xs text-gray-400 ml-3 px-4">
-				Pembayaran
-			</p>
 			<NavLink
 				:is-sidebar-hidden="isSidebarHidden"
 				:href="route('pembayaran')"
@@ -120,7 +110,6 @@
 				"
 				popup-text="Histori Pembayaran"
 				:is-sidebar-hidden="isSidebarHidden"
-				class="mb-3"
 			>
 				<icon class="ml-1" name="histori-icon"></icon>
 				<fade-slide>
@@ -130,9 +119,6 @@
 				</fade-slide>
 			</NavLink>
 
-			<p v-if="!hideText" class="text-xs text-gray-400 ml-3 px-4">
-				Laporan
-			</p>
 			<NavLink
 				v-if="$page.props.auth.user.level == 'admin'"
 				:href="route('laporan')"

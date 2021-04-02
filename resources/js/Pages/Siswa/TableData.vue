@@ -1,6 +1,6 @@
 <template>
 	<table class="table-auto w-full text-base">
-		<thead class="rounded-md">
+		<thead class="rounded-md md:table-header-group hidden">
 			<tr class="h-14">
 				<th>No</th>
 				<th>NISN</th>
@@ -10,19 +10,39 @@
 				<th>Action</th>
 			</tr>
 		</thead>
-		<tbody class="text-center mt-5 text-sm">
+		<tbody class="md:text-center mt-5 text-base">
 			<tr
 				v-for="(siswa, index) in data.data"
 				:key="index"
-				class="border-b border-gray-300 hover:bg-gray-50 transition-colors duration-200"
+				class="border-b border-gray-300 hover:bg-gray-50 transition-colors duration-200 md:table-row flex flex-col py-4"
 			>
-				<td class="font-bold">{{ index + number }}</td>
-				<td>{{ siswa.nisn }}</td>
-				<td>{{ siswa.nis }}</td>
-				<td>{{ siswa.nama }}</td>
-				<td v-if="siswa.kelas">{{ siswa.kelas.nama_kelas }}</td>
-				<td v-else>Tidak ada kelas</td>
-				<td class="flex justify-center items-center h-12">
+				<td class="font-bold">
+					<span class="font-semibold md:hidden"># </span
+					>{{ index + number }}
+				</td>
+				<td>
+					<span class="font-semibold md:hidden">NISN : </span>
+					{{ siswa.nisn }}
+				</td>
+				<td>
+					<span class="font-semibold md:hidden">NIS : </span
+					>{{ siswa.nis }}
+				</td>
+				<td>
+					<span class="font-semibold md:hidden">Nama : </span
+					>{{ siswa.nama }}
+				</td>
+				<td v-if="siswa.kelas">
+					<span class="font-semibold md:hidden">Kelas : </span
+					>{{ siswa.kelas.nama_kelas }}
+				</td>
+				<td v-else>
+					<span class="font-semibold md:hidden">Kelas : </span>Tidak
+					ada kelas
+				</td>
+				<td
+					class="flex md:justify-center justify-end items-center h-14"
+				>
 					<inertia-link
 						:href="route('siswa.edit', siswa.nisn)"
 						as="button"

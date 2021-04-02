@@ -16,7 +16,7 @@
 			>
 				<td class="font-bold">{{ index + number }}</td>
 				<td>{{ spp.tahun }}</td>
-				<td>{{ spp.nominal }}</td>
+				<td>{{ currency(spp.nominal) }}</td>
 				<td class="flex justify-center items-center h-12">
 					<inertia-link
 						:href="route('spp.edit', spp.id)"
@@ -37,9 +37,10 @@
 import Icon from "@/Components/Icon";
 import ButtonDelete from "@/Components/ButtonDelete";
 import number from "@/Helper/number.js";
+import currency from "@/Helper/currency.js";
 export default {
 	props: ["data"],
-	mixins: [number],
+	mixins: [number, currency],
 
 	components: {
 		Icon,

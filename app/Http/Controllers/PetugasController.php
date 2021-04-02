@@ -7,6 +7,7 @@ use App\Http\Requests\PetugasUpdateRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Petugas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -20,7 +21,7 @@ class PetugasController extends Controller
         return Inertia::render('Petugas/Index', [
             'petugas' => Petugas::when($request->search, function($query, $search){
                 $query->where('nama_petugas', 'LIKE', '%'.$search.'%');
-            })->paginate(5)
+            })->paginate(10)
         ]);
     }
 
@@ -35,30 +36,28 @@ class PetugasController extends Controller
     {
         $request->validated();
 
-        $petugas = Petugas::create([
-            'nama_petugas' => $request->nama_petugas,
-            'username' => $request->username,
-            'password' => $request->password,
-            'level' => $request->level 
-        ]);
+        if ($request->create_account) {
+            DB::transaction(function () use($request) {                
+                $petugas = Petugas::create([
+                    'nama_petugas' => $request->nama_petugas,
+                    'username' => $request->username,
+                    'password' => $request->password,
+                    'level' => $request->level 
+                ]);
 
-        if ($petugas && $request->create_account) {
-            $username = $request->username . '@spp';
-            $petugas->user()->create([
-                'name' => $request->nama_petugas,
-                'username' => $username,
-                'password' => Hash::make($request->password),
-                'id_petugas' => $petugas->id,
-                'role' => 'petugas'
-            ]);
-            return Redirect::route('petugas')->with('toast', [
-                'message' => 'Data dan akun petugas berhasil ditambahkan', 
-                'success' => true
-            ]);
+                $username = $request->username . '@spp';
+                $petugas->user()->create([
+                    'name' => $request->nama_petugas,
+                    'username' => $username,
+                    'password' => Hash::make($request->password),
+                    'id_petugas' => $petugas->id,
+                    'role' => 'petugas'
+                ]);
+            });
         }
-        return Redirect::route('petugas.tambah')->with('toast', [
-            'message' => 'Maaf terjadi kesalahan', 
-            'success' => false
+        return Redirect::route('petugas')->with('toast', [
+            'message' => 'Data dan akun petugas berhasil ditambahkan', 
+            'success' => true
         ]);
     }
     
@@ -81,15 +80,15 @@ class PetugasController extends Controller
     public function update(PetugasUpdateRequest $request, $id)
     {
         $request->validated();
+        
+        DB::transaction(function () use($request, $id) {            
+            Petugas::where('id', $id)->update([
+                'nama_petugas' => $request->nama_petugas,
+                'username' => $request->username,
+                'password' => $request->password,
+                'level' => $request->level
+            ]);
 
-        $updated = Petugas::where('id', $id)->update([
-            'nama_petugas' => $request->nama_petugas,
-            'username' => $request->username,
-            'password' => $request->password,
-            'level' => $request->level
-        ]);
-
-        if ($updated) {
             $this->petugas = Petugas::where('id', $id)->firstOrFail();
 
             $this->petugas->user()->update([
@@ -98,20 +97,12 @@ class PetugasController extends Controller
                 'password' => Hash::make($request->password),
                 'role' => $request->level
             ]);
+        });
 
-            return Redirect::route('petugas')->with('toast', [
-                'message' => 'Data berhasil diubah', 
-                'success' => true
-            ]);
-        }
-
-
-        return Redirect::route('data-petugas.edit', $id)->with('toast', [
-            'message' => 'Tidak ada data yang dirubah', 
-            'success' => false
+        return Redirect::route('petugas')->with('toast', [
+            'message' => 'Data berhasil diubah', 
+            'success' => true
         ]);
-
-        
     }
     
 

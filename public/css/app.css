@@ -31643,6 +31643,23 @@ input:focus, button:focus, textarea:focus {
   --tw-translate-x: 2.5rem
 }
 
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #c3c8fc;
+  border-radius: 20px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #6d7aee;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

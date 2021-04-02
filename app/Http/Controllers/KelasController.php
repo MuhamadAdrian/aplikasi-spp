@@ -16,7 +16,7 @@ class KelasController extends Controller
         return Inertia::render('Kelas/Index', [
             'kelas' => Kelas::when($request->search, function($query, $search){
                 $query->where('nama_kelas', 'LIKE', '%'.$search.'%');
-            })->paginate(5)
+            })->paginate(10)
         ]);
     }
 
@@ -60,7 +60,7 @@ class KelasController extends Controller
                 $detail->siswa()->with('kelas')->where('nama', 'LIKE', '%'.$request->search.'%')
                 ->orWhere('nisn', 'LIKE', '%'.$request->search.'%')
                 ->orWhere('nis', 'LIKE', '%'.$request->search.'%')
-                ->paginate(5)
+                ->paginate(10)
             );
         }
         else{

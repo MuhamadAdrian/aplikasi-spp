@@ -7,7 +7,6 @@ import {
     plugin as InertiaPlugin,
 } from "@inertiajs/inertia-vue3";
 import { InertiaProgress } from "@inertiajs/progress";
-import VueCurrencyFilter from "vue-currency-filter";
 
 const el = document.getElementById("app");
 

@@ -141,17 +141,18 @@ class SiswaController extends Controller
     {
         $request->validated();
 
-        $updated = Siswa::where('nisn', $nisn)->update([
-            'nisn' => $request->nisn,
-            'nis' => $request->nis,
-            'nama' => $request->nama,
-            'id_kelas' => $request->id_kelas,
-            'alamat' => $request->alamat,
-            'no_telp' => $request->no_telp,
-            'id_spp' => $request->id_spp,
-        ]);
+        DB::transaction(function () use($request, $nisn) {
+            
+            Siswa::where('nisn', $nisn)->update([
+                'nisn' => $request->nisn,
+                'nis' => $request->nis,
+                'nama' => $request->nama,
+                'id_kelas' => $request->id_kelas,
+                'alamat' => $request->alamat,
+                'no_telp' => $request->no_telp,
+                'id_spp' => $request->id_spp,
+            ]);
 
-        if ($updated) {
             $this->siswa = Siswa::where('nisn', $request->nisn)->firstOrFail();
 
             $this->siswa->user()->update([
@@ -159,19 +160,13 @@ class SiswaController extends Controller
                 'username' => $request->nis.'@spp',
                 'password' => Hash::make($request->nis)
             ]);
+        });
 
-            return Redirect::route('siswa')->with('toast', [
-                'message' => 'Data berhasil diubah', 
-                'success' => true
-            ]);
-        }
 
-        return Redirect::route('siswa.edit', $this->siswa->nisn)->with('toast', [
-            'message' => 'Tidak ada data yang dirubah', 
-            'success' => false
+        return Redirect::route('siswa')->with('toast', [
+            'message' => 'Data berhasil diubah', 
+            'success' => true
         ]);
-
-        
     }
     
     /**

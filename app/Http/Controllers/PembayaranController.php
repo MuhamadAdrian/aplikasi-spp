@@ -19,7 +19,7 @@ class PembayaranController extends Controller
                 $query->where('nama', 'LIKE', '%'.$search.'%')
                 ->orWhere('nisn', 'LIKE', '%'.$search.'%')
                 ->orWhere('nis', 'LIKE', '%'.$search.'%');
-            })->with('kelas')->latest()->paginate(5)
+            })->with('kelas')->latest()->paginate(10)
         ]);
     }
     
@@ -82,7 +82,7 @@ class PembayaranController extends Controller
                 'status' => $request->jumlah_masuk == $request->jumlah_bayar ? 'lunas' : 'belum lunas'
             ]);
     
-            return Redirect::route('histori.show', $request->nisn)->with('toast', [
+            return Redirect::route('histori.show', ['histori_pembayaran' => $request->nisn, 'tahun' => 'semua'])->with('toast', [
                 'message' => 'Data Pembayaran Berhasil ditambahkan', 
                 'success' => true
             ]);

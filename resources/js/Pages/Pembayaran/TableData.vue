@@ -1,5 +1,5 @@
 <template>
-	<table class="table-auto w-full text-base">
+	<table class="table-auto w-full text-base whitespace-nowrap">
 		<thead class="rounded-md">
 			<tr class="h-14">
 				<th>No</th>

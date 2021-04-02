@@ -11,7 +11,12 @@
 					</h1>
 					<inertia-link
 						as="button"
-						:href="route('histori.show', data.siswa.nisn)"
+						:href="
+							route('histori.show', {
+								histori_pembayaran: data.siswa.nisn,
+								tahun: 'semua',
+							})
+						"
 						class="bg-indigo-400 rounded-md px-3 py-2 text-white hover:bg-indigo-500 text-sm"
 					>
 						Lihat Semuanya...
@@ -19,7 +24,7 @@
 				</div>
 
 				<div
-					class="grid md:grid-cols-2 grid-cols-1 grid-flow-coll gap-7 p-4"
+					class="grid md:grid-cols-2 grid-cols-1 grid-flow-coll gap-7 mt-5"
 				>
 					<div
 						v-for="histori in historiPembayaran"

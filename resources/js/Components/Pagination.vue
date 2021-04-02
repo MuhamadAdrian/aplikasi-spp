@@ -1,9 +1,9 @@
 <template>
 	<div
 		v-if="data"
-		class="pagination flex items-center justify-end w-full mt-5"
+		class="pagination flex md:flex-row flex-col items-center justify-end w-full mt-5"
 	>
-		<div class="information">
+		<div class="information md:mb-0 mb-3">
 			<p class="text-xs text-gray-400">
 				<span class="mr-3">Halaman {{ data.current_page }} </span>
 				<span>Tampil {{ data.from }} - {{ data.to }} </span>

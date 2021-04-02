@@ -25,7 +25,5 @@
         "vue": "^3.0.5",
         "vue-loader": "^16.1.2"
     },
-    "dependencies": {
-        "vue-currency-filter": "^5.2.0"
-    }
+    "dependencies": {}
 }
