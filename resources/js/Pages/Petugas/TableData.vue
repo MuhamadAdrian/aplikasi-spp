@@ -10,7 +10,7 @@
 					<th>Action</th>
 				</tr>
 			</thead>
-			<tbody class="mt-5 text-sm text-center">
+			<tbody class="mt-5 text-center">
 				<tr
 					v-for="(petugas, index) in data.data"
 					:key="index"
@@ -20,7 +20,7 @@
 					<td>{{ petugas.nama_petugas }}</td>
 					<td>{{ petugas.username }}</td>
 					<td>{{ petugas.level }}</td>
-					<td class="flex justify-center items-center h-12">
+					<td class="flex justify-center items-center h-14">
 						<inertia-link
 							:href="route('petugas.edit', petugas.id)"
 							as="button"

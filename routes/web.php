@@ -93,6 +93,9 @@ Route::middleware(['auth', 'verified', 'authadmin'])->group(function () {
     ]);
 
     Route::get('/generate-laporan', [LaporanController::class, 'index'])->name('laporan');
+    Route::get('/generate-laporan/generate', [LaporanController::class, 'generateLaporan'])->name('generate');
+
+    Route::get('/histori/{id}/cetak', [HistoriController::class, 'cetakInvoice'])->name('invoice');
 });
 
 

@@ -2,7 +2,7 @@
 	<div>
 		<div class="py-12">
 			<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-				<h1 class="text-2xl font-bold">Data Spp</h1>
+				<h1 class="text-2xl font-bold ml-3">Data Spp</h1>
 
 				<div class="bg-white p-5 rounded-md shadow-md mt-5">
 					<div

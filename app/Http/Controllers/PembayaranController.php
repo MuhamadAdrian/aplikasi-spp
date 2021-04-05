@@ -19,7 +19,7 @@ class PembayaranController extends Controller
                 $query->where('nama', 'LIKE', '%'.$search.'%')
                 ->orWhere('nisn', 'LIKE', '%'.$search.'%')
                 ->orWhere('nis', 'LIKE', '%'.$search.'%');
-            })->with('kelas')->latest()->paginate(10)
+            })->with('kelas')->latest()->paginate(5)
         ]);
     }
     
@@ -51,41 +51,41 @@ class PembayaranController extends Controller
     public function store(Request $request)
     {
 
-            if (Pembayaran::where('nisn', $request->nisn)
-            ->where('bulan_dibayar', $request->bulan_bayar)
-            ->where('tahun_dibayar', $request->tahun_bayar)
-            ->exists()) 
-            {
-                return redirect()->back()->with('toast', [
-                    'message' => "Siswa ini telah membayar untuk bulan $request->bulan_bayar $request->tahun_bayar",
-                    'success' => false
-                ]);
-            }
-    
-            $request->validate([
-                'nisn' => 'required',
-                'bulan_bayar' => 'required|string|max:9',
-                'tahun_bayar' => 'required|string|max:4',
-                'id_spp' => 'required',
-                'jumlah_bayar' => 'required|integer',
-                'jumlah_masuk' => 'required',
-            ], Siswa::message);
-            
-            Pembayaran::create([
-                'id_petugas' => auth()->user()->petugas->id,
-                'nisn' => $request->nisn,
-                'bulan_dibayar' => $request->bulan_bayar,
-                'tahun_dibayar' => $request->tahun_bayar,
-                'id_spp' => $request->id_spp,
-                'jumlah_dibayar' => $request->jumlah_bayar,
-                'jumlah_masuk' => $request->jumlah_masuk,
-                'status' => $request->jumlah_masuk == $request->jumlah_bayar ? 'lunas' : 'belum lunas'
+        if (Pembayaran::where('nisn', $request->nisn)
+        ->where('bulan_dibayar', $request->bulan_bayar)
+        ->where('tahun_dibayar', $request->tahun_bayar)
+        ->exists()) 
+        {
+            return redirect()->back()->with('toast', [
+                'message' => "Siswa ini telah membayar untuk bulan $request->bulan_bayar $request->tahun_bayar",
+                'success' => false
             ]);
-    
-            return Redirect::route('histori.show', ['histori_pembayaran' => $request->nisn, 'tahun' => 'semua'])->with('toast', [
-                'message' => 'Data Pembayaran Berhasil ditambahkan', 
-                'success' => true
-            ]);
+        }
+
+        $request->validate([
+            'nisn' => 'required',
+            'bulan_bayar' => 'required|string|max:9',
+            'tahun_bayar' => 'required|string|max:4',
+            'id_spp' => 'required',
+            'jumlah_bayar' => 'required|integer',
+            'jumlah_masuk' => 'required|integer|max:'.$request->jumlah_bayar.'|min:1',
+        ], Siswa::message);
+        
+        Pembayaran::create([
+            'id_petugas' => auth()->user()->petugas->id,
+            'nisn' => $request->nisn,
+            'bulan_dibayar' => $request->bulan_bayar,
+            'tahun_dibayar' => $request->tahun_bayar,
+            'id_spp' => $request->id_spp,
+            'jumlah_dibayar' => $request->jumlah_bayar,
+            'jumlah_masuk' => $request->jumlah_masuk,
+            'status' => $request->jumlah_masuk == $request->jumlah_bayar ? 'lunas' : 'belum lunas'
+        ]);
+
+        return Redirect::route('histori.show', ['histori_pembayaran' => $request->nisn, 'tahun' => 'semua'])->with('toast', [
+            'message' => 'Data Pembayaran Berhasil ditambahkan', 
+            'success' => true
+        ]);
     }
     
 

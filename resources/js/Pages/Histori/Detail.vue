@@ -1,13 +1,10 @@
 <template>
 	<div class="py-12">
 		<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-			<filter-data></filter-data>
-			<div class="information md:block hidden">
-				<h2
-					class="rounded-md mb-5 text-gray-400 text-sm font-semibold ml-3"
-				>
-					Informasi Siswa
-				</h2>
+			<div v-if="$page.props.auth.user.level" class="information">
+				<h1 class="text-2xl font-bold ml-3">
+					Detail Histori Pembayaran
+				</h1>
 				<div class="bg-white p-5 rounded-md shadow-md mt-5">
 					<table class="table-auto w-full mx-2">
 						<tr class="h-10">
@@ -68,7 +65,7 @@
 						</tr>
 					</table>
 					<inertia-link
-						v-if="$page.props.auth.user.level"
+						v-if="$page.props.auth.user.level == 'admin'"
 						as="button"
 						:href="route('siswa', { search: siswa.nisn })"
 						class="hover:bg-indigo-50 transition-colors duration-200 text-indigo-600 ml-auto block mt-5 text-sm py-2 px-3 rounded-md"
@@ -76,11 +73,13 @@
 					>
 				</div>
 			</div>
-			<h2 class="text-sm font-semibold md:mt-10 ml-8 text-gray-400">
+			<h2
+				class="md:text-sm text-base font-semibold md:mt-10 ml-8 text-gray-400"
+			>
 				Histori Pembayaran Siswa
 			</h2>
 			<!-- desktop -->
-			<div class="bg-white p-5 rounded-md shadow-md mt-5 md:block hidden">
+			<div class="bg-white p-5 rounded-md shadow-md mt-5">
 				<div
 					class="flex flex-col md:flex-row md:items-center justify-between mb-3"
 				>
@@ -93,16 +92,35 @@
 						"
 						>Entri Pembayaran</add-button
 					>
+					<select
+						required
+						v-model="selected_tahun"
+						@change="filterHandler"
+						class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+					>
+						<option selected value="semua">Semua Tahun</option>
+						<option
+							v-for="(t, index) in daftar_tahun"
+							:key="index"
+							:value="t.tahun_dibayar"
+						>
+							{{ t.tahun_dibayar }}
+						</option>
+					</select>
 					<!--<search-input :params="detail.id"></search-input>-->
 				</div>
 				<table-data :data="detail"></table-data>
-				<pagination :data="detail"></pagination>
+				<pagination
+					:data="detail"
+					:tahun="route().params.tahun"
+				></pagination>
 			</div>
 			<!--dekstop-->
 
 			<!--mobile-->
 
-			<div v-if="!$page.props.auth.user.level" class="p-4 md:hidden">
+			<!--<div v-if="!$page.props.auth.user.level" class="p-4 md:hidden">
+				<filter-data></filter-data>
 				<div
 					v-for="histori in detail.data"
 					:key="histori.id"
@@ -180,7 +198,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>-->
 			<!--mobile-->
 		</div>
 	</div>
@@ -209,10 +227,24 @@ export default {
 
 	mixins: [currency],
 
-	props: ["detail", "siswa"],
+	props: ["detail", "siswa", "daftar_tahun"],
 
-	mounted() {
-		console.log(this.detail);
+	data() {
+		return {
+			selected_tahun: route().params.tahun,
+		};
+	},
+
+	methods: {
+		filterHandler() {
+			this.$inertia.get(
+				route("histori.show", this.siswa.nisn),
+				{
+					tahun: this.selected_tahun,
+				},
+				{ preserveScroll: true }
+			);
+		},
 	},
 };
 </script>

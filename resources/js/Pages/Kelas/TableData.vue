@@ -9,7 +9,7 @@
 					<th>Aksi</th>
 				</tr>
 			</thead>
-			<tbody class="text-center mt-5 text-sm">
+			<tbody class="text-center mt-5">
 				<tr
 					v-for="(kelas, index) in data.data"
 					:key="index"
@@ -18,7 +18,7 @@
 					<td class="font-bold">{{ index + number }}</td>
 					<td>{{ kelas.nama_kelas }}</td>
 					<td>{{ kelas.kompetensi_keahlian }}</td>
-					<td class="flex justify-center items-center h-12">
+					<td class="flex justify-center items-center h-14">
 						<inertia-link
 							:href="route('kelas.edit', kelas.id)"
 							as="button"

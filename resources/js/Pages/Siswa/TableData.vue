@@ -1,5 +1,5 @@
 <template>
-	<table class="table-auto w-full text-base">
+	<table class="table-auto w-full">
 		<thead class="rounded-md md:table-header-group hidden">
 			<tr class="h-14">
 				<th>No</th>
@@ -10,7 +10,7 @@
 				<th>Action</th>
 			</tr>
 		</thead>
-		<tbody class="md:text-center mt-5 text-base">
+		<tbody class="md:text-center mt-5">
 			<tr
 				v-for="(siswa, index) in data.data"
 				:key="index"

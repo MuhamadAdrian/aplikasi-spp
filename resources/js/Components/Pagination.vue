@@ -34,7 +34,7 @@
 
 <script>
 export default {
-	props: ["data", "nisn"],
+	props: ["data", "nisn", "tahun"],
 
 	data() {
 		return {
@@ -44,9 +44,13 @@ export default {
 
 	computed: {
 		links() {
-			if (this.nisn) {
+			if (this.nisn && this.tahun) {
 				this.data.links.forEach((link) => {
-					link.url += `&nisn=${this.nisn}`;
+					link.url += `&nisn=${this.nisn}&tahun=${this.tahun}`;
+				});
+			} else if (this.tahun) {
+				this.data.links.forEach((link) => {
+					link.url += `&tahun=${this.tahun}`;
 				});
 			}
 			return this.data.links;

@@ -6,8 +6,9 @@
 			<thead class="rounded-md">
 				<tr class="h-14">
 					<th>No</th>
+					<th v-if="!$page.props.auth.user.level">Waktu</th>
 					<th>Tanggal Bayar</th>
-					<th>Atas Nama</th>
+					<th v-if="$page.props.auth.user.level">Atas Nama</th>
 					<th>Bulan</th>
 					<th>Tahun</th>
 					<th>Petugas</th>
@@ -25,8 +26,13 @@
 					class="border-b border-gray-300 hover:bg-gray-50 transition-colors duration-200 h-12"
 				>
 					<td class="font-bold">{{ index + number }}</td>
+					<td v-if="!$page.props.auth.user.level">
+						{{ histori.waktu }}
+					</td>
 					<td>{{ histori.tgl_bayar }}</td>
-					<td>{{ histori.siswa.nama }}</td>
+					<td v-if="$page.props.auth.user.level">
+						{{ histori.siswa.nama }}
+					</td>
 					<td>{{ histori.bulan_dibayar }}</td>
 					<td>{{ histori.tahun_dibayar }}</td>
 					<td>{{ histori.petugas.nama_petugas }}</td>
@@ -64,18 +70,17 @@
 						>
 							Lunasi
 						</button>
-						<inertia-link
-							:href="route('siswa')"
-							as="button"
+						<a
+							:href="route('invoice', histori.id)"
+							target="blank"
 							class="rounded-md relative mr-1 w-3 h-3 p-4 transition-colors duration-200 bg-indigo-400 hover:bg-indigo-500 text-sm flex items-center justify-center text-white"
 						>
 							<icon name="sm-print-icon"></icon>
-						</inertia-link>
+						</a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
-		<p v-if="!data.data.length" class="text-center my-10">Tidak ada data</p>
 	</div>
 </template>
 

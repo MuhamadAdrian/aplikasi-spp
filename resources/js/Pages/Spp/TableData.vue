@@ -8,7 +8,7 @@
 				<th>Aksi</th>
 			</tr>
 		</thead>
-		<tbody class="text-center mt-5 text-sm">
+		<tbody class="text-center mt-5">
 			<tr
 				v-for="(spp, index) in data.data"
 				:key="index"
@@ -17,7 +17,7 @@
 				<td class="font-bold">{{ index + number }}</td>
 				<td>{{ spp.tahun }}</td>
 				<td>{{ currency(spp.nominal) }}</td>
-				<td class="flex justify-center items-center h-12">
+				<td class="flex justify-center items-center h-14">
 					<inertia-link
 						:href="route('spp.edit', spp.id)"
 						as="button"

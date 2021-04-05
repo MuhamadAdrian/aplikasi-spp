@@ -12,10 +12,13 @@
 							class="flex md:items-center items-end md:flex-row flex-col"
 						>
 							<input
+								id="nisn"
 								type="text"
 								placeholder="Cari Histori dengan NISN"
-								class="border-gray-300 md:w-72 w-72 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+								class="border-gray-300 md:w-72 w-full focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
 								v-model="nisn"
+								autocomplete="nisn"
+								name="nisn"
 							/>
 							<select
 								required
@@ -42,17 +45,17 @@
 						</div>
 					</form>
 				</div>
-				<div class="bg-white p-5 rounded-md shadow-md mt-5">
-					<div
-						class="flex flex-col md:flex-row md:items-center justify-between mb-3"
-					>
-						<add-button :href="route('pembayaran')"
-							>Entri Pembayaran</add-button
-						>
-					</div>
+				<div
+					v-if="histori"
+					class="bg-white p-5 rounded-md shadow-md mt-5"
+				>
 					<!-- table -->
 					<table-data :data="histori"></table-data>
-					<pagination :data="histori"></pagination>
+					<pagination
+						:data="histori"
+						:tahun="route().params.tahun"
+						:nisn="route().params.nisn"
+					></pagination>
 				</div>
 			</div>
 		</div>
@@ -63,7 +66,6 @@
 import MainLayout from "@/Layouts/MainLayout";
 import Pagination from "@/Components/Pagination";
 import TableData from "@/Pages/Histori/TableData";
-import AddButton from "@/Components/AddButton";
 import SearchInput from "@/Components/SearchInput";
 import Icon from "@/Components/Icon";
 
@@ -72,7 +74,6 @@ export default {
 	components: {
 		Pagination,
 		TableData,
-		AddButton,
 		SearchInput,
 		Icon,
 	},
@@ -80,22 +81,20 @@ export default {
 
 	data() {
 		return {
-			nisn: "",
-			selected_tahun: "semua",
+			nisn: route().params.nisn ? route().params.nisn : "",
+			selected_tahun: route().params.tahun
+				? route().params.tahun
+				: "semua",
 		};
 	},
 
 	methods: {
 		search() {
 			this.$inertia.get(
-				route("histori.show", this.nisn),
-				{
+				route("histori.show", {
+					histori_pembayaran: this.nisn,
 					tahun: this.selected_tahun,
-				},
-				{
-					preserveState: true,
-					preserveScroll: true,
-				}
+				})
 			);
 		},
 	},

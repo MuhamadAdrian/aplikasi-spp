@@ -24,9 +24,10 @@ class Siswa extends Model
     public const message = [
         'required' => ':attribute tidak boleh kosong',
         'unique' => ':attribute sudah terdaftar, gunakan nilai lain',
-        'max' => ':attribute terlalu panjang',
+        'max' => ':attribute tidak boleh lebih dari :max',
         'string' => ':attribute harus berupa string atau kalimat',
         'integer' => ':attribute harus berupa integer atau angka',
+        'min' => ':attribute setidaknya adalah :min',
     ];
 
     public function kelas ()

@@ -4,7 +4,7 @@
 			<div class="bg-white md:p-10 p-4 md:rounded-md md:shadow-md">
 				<form-data :spp="spp" :data="data.siswa"></form-data>
 			</div>
-			<div v-if="historiPembayaran.length">
+			<div class="p-4 md:p-0" v-if="historiPembayaran.length">
 				<div class="flex justify-between items-center mt-16">
 					<h1 class="font-semibold text-sm mb-2 text-gray-400 ml-5">
 						4 Pembayaran Terakhir Siswa
