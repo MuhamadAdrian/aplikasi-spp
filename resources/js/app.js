@@ -7,18 +7,20 @@ import {
     plugin as InertiaPlugin,
 } from "@inertiajs/inertia-vue3";
 import { InertiaProgress } from "@inertiajs/progress";
+import VueApexCharts from "vue3-apexcharts";
 
 const el = document.getElementById("app");
 
-createApp({
+const app = createApp({
     render: () =>
         h(InertiaApp, {
             initialPage: JSON.parse(el.dataset.page),
             resolveComponent: (name) => require(`./Pages/${name}`).default,
         }),
-})
-    .mixin({ methods: { route } })
-    .use(InertiaPlugin)
-    .mount(el);
+});
+
+app.mixin({ methods: { route } }).use(InertiaPlugin).mount(el);
+
+app.use(VueApexCharts);
 
 InertiaProgress.init({ color: "#4B5563" });

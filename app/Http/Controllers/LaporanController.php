@@ -49,7 +49,7 @@ class LaporanController extends Controller
         }
 
         if (!$this->histori) {
-            return back()->with('toast', [
+            return redirect('laporan')->back()->with('toast', [
                 'message' => 'Data tidak ditemukan',
                 'success' => false
             ]);
