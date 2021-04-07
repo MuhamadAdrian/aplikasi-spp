@@ -90,6 +90,7 @@ class AuthAdmin
                 'pembayaran.update',
                 'histori', //histori route
                 'histori.show',
+                'invoice',
             ],
 
             'siswa' => [

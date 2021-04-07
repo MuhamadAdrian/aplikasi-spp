@@ -51,24 +51,24 @@ class HistoriController extends Controller
         }
         else{
             $pembayaran = $this->pembayaran->where('nisn', $nisn)->where('tahun_dibayar', $request->tahun)->paginate(10);
-        }
-        
-        if (!$pembayaran->isEmpty()) {
-            foreach ($pembayaran->items() as $p) {
-                $p->tunggakan = $p->jumlah_dibayar - $p->jumlah_masuk;
-                $p->waktu = Carbon::parse($p->tgl_bayar)->diffForHumans();
+            if ($pembayaran->isEmpty()) {
+                return back()->with('toast', [
+                    'message' => 'Data tidak ditemukan',
+                    'success' => false
+                ]);
             }
-            return Inertia::render('Histori/Detail', [
-                'detail' => $pembayaran,
-                'siswa' => Siswa::with(['kelas', 'spp'])->where('nisn', $nisn)->firstOrFail(),
-                'daftar_tahun' => $this->daftar_tahun
-            ]);
         }
         
-        return back()->with('toast', [
-            'message' => 'Data tidak ditemukan',
-            'success' => false
+        foreach ($pembayaran->items() as $p) {
+            $p->tunggakan = $p->jumlah_dibayar - $p->jumlah_masuk;
+            $p->waktu = Carbon::parse($p->tgl_bayar)->diffForHumans();
+        }
+        return Inertia::render('Histori/Detail', [
+            'detail' => $pembayaran,
+            'siswa' => Siswa::with(['kelas', 'spp'])->where('nisn', $nisn)->firstOrFail(),
+            'daftar_tahun' => $this->daftar_tahun
         ]);
+        
     }
 
     public function cetakInvoice($id)

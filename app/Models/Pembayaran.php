@@ -17,6 +17,10 @@ class Pembayaran extends Model
 
     public $timestamps = false;
 
+    protected $dates = [
+        'tgl_bayar',
+    ];
+
     public function siswa()
     {
         return $this->belongsTo(Siswa::class, 'nisn', 'nisn');
@@ -31,4 +35,5 @@ class Pembayaran extends Model
     {
         return $this->belongsTo(Spp::class, 'id_spp', 'id');
     }
+
 }
