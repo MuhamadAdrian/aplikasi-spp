@@ -29,5 +29,12 @@
     "dependencies": {
         "apexcharts": "^3.26.0",
         "vue3-apexcharts": "^1.2.1"
+    },
+    "name": "aplikasi-spp",
+    "description": "aplikasi-spp",
+    "version": "1.0.0",
+    "engines": {
+        "node": "14.13.0",
+        "npm": "6.14.9"
     }
 }
