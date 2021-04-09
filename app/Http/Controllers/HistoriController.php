@@ -48,6 +48,12 @@ class HistoriController extends Controller
 
         if ($request->tahun=="semua") {
            $pembayaran = $this->pembayaran->where('nisn', $nisn)->paginate(10);
+            if ($pembayaran->isEmpty()) {
+                return back()->with('toast', [
+                    'message' => 'Data tidak ditemukan',
+                    'success' => false
+                ]);
+            }
         }
         else{
             $pembayaran = $this->pembayaran->where('nisn', $nisn)->where('tahun_dibayar', $request->tahun)->paginate(10);

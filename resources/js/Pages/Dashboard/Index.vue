@@ -1,7 +1,9 @@
 <template>
-	<div class="py-12">
+	<div class="py-12 px-4 md:px-0">
 		<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-			<h1 class="text-2xl font-bold ml-3 mb-5">Dashboard</h1>
+			<h1 class="text-2xl font-bold ml-3 mb-5 dark:text-gray-400">
+				Dashboard
+			</h1>
 			<div
 				class="grid md:grid-cols-4 gap-5 sm:grid-cols-2 grid-cols-1 grid-flow-row-dense"
 			>
@@ -139,7 +141,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-span-2">
+				<div class="md:col-span-2 col-span-1">
 					<kelas-chart
 						title="Data siswa berdasar kelas"
 						:data="kelas"
@@ -178,7 +180,5 @@ export default {
 		"pemasukan",
 		"data_transaksi_per_bulan",
 	],
-
-	data: () => ({}),
 };
 </script>

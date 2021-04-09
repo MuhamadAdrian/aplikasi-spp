@@ -1,10 +1,10 @@
 <template>
 	<form @submit.prevent="submit()">
 		<div class="flex items-center justify-between mb-5">
-			<h1 v-if="edit" class="text-lg font-bold">
+			<h1 v-if="edit" class="text-lg font-bold dark:text-gray-300">
 				<span>Edit Data Kelas</span>
 			</h1>
-			<h1 v-else class="text-lg font-bold">
+			<h1 v-else class="text-lg font-bold dark:text-gray-300">
 				<span>Tambah Data Kelas</span>
 			</h1>
 			<form-button

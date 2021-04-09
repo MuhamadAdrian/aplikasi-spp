@@ -2,10 +2,12 @@
 	<div>
 		<div class="py-12">
 			<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-				<h1 class="text-2xl font-bold ml-3">Data Petugas</h1>
+				<h1 class="text-2xl font-bold ml-3 dark:text-gray-400">
+					Data Petugas
+				</h1>
 
 				<div
-					class="main-content bg-white p-5 rounded-md shadow-md mt-5"
+					class="main-content bg-white dark:bg-gray-800 bg-color-transition dark:text-gray-300 p-5 rounded-md shadow-md mt-5"
 				>
 					<div
 						class="flex flex-col md:flex-row md:items-center justify-between mb-3"

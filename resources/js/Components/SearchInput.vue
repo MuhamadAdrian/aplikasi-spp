@@ -3,7 +3,7 @@
 		<input
 			id="search"
 			type="text"
-			class="w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+			class="w-full dark:focus:border-indigo-500 dark:focus:ring-indigo-500 bg-color-transition border-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
 			:class="[wFull ? 'md:w-full' : 'md:w-80']"
 			@keyup="searchData()"
 			v-model="search"

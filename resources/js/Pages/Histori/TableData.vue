@@ -23,7 +23,7 @@
 				<tr
 					v-for="(histori, index) in data.data"
 					:key="index"
-					class="border-b border-gray-300 hover:bg-gray-50 transition-colors duration-200 h-12"
+					class="border-b border-gray-300 dark:border-gray-700 dark:hover:bg-gray-700 hover:bg-gray-50 transition-colors duration-200 h-12"
 				>
 					<td class="font-bold">{{ index + number }}</td>
 					<td v-if="!$page.props.auth.user.level">

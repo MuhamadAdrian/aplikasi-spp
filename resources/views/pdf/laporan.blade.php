@@ -104,7 +104,11 @@
                     <td class="text-center" style="width: 100px">{{ \Carbon\Carbon::parse($data->tgl_bayar)->isoFormat("DD MMMM Y") }}</td>
                     <td>{{ $data->siswa->nama }}</td>
                     <td class="text-center" style="width: 60px">{{ $data->siswa->kelas->nama_kelas }}</td>
-                    <td class="text-center" style="width: 30px">{{ $data->spp->tahun }}</td>
+                    @if (!$data->spp)
+                        <td class="text-center" style="width: 30px">Data SPP hilang</td>
+                        @else
+                        <td class="text-center" style="width: 30px">{{ $data->spp->tahun }}</td>
+                    @endif
                     <td class="text-center" style="width: 60px">{{ $data->bulan_dibayar }}</td>
                     <td class="text-center" style="width: 30px">{{ $data->tahun_dibayar }}</td>
                     <td class="text-center" style="width: 70px">@currency($data->jumlah_masuk)</td>

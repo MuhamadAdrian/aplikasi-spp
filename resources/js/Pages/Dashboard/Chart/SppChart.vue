@@ -25,6 +25,7 @@ export default {
 			chart: {
 				height: 350,
 				type: "area",
+				foreColor: "#6E8192",
 			},
 			colors: ["#7176F2"],
 			stroke: {

@@ -3,15 +3,19 @@
 		<div class="py-12">
 			<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 				<div class="overflow-hidden shadow-sm sm:rounded-lg">
-					<h1 class="text-2xl font-bold ml-3">Cetak Laporan</h1>
-					<div class="p-6 bg-white border-gray-200 mt-10 relative">
+					<h1 class="text-2xl font-bold ml-3 dark:text-gray-400">
+						Cetak Laporan
+					</h1>
+					<div
+						class="p-6 bg-white dark:bg-gray-800 bg-color-transition border-gray-200 mt-10 relative"
+					>
 						<div
 							class="flex md:items-center items-end md:flex-row flex-col"
 						>
 							<select
 								required
 								v-model="selected_tahun"
-								class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+								class="dark:focus:border-indigo-500 dark:focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 bg-color-transition dark:text-gray-300 block border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
 							>
 								<option selected value="semua">
 									Semua Tahun
@@ -27,7 +31,7 @@
 							<select
 								required
 								v-model="selected_bulan"
-								class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+								class="dark:focus:border-indigo-500 dark:focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 bg-color-transition dark:text-gray-300 block border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
 							>
 								<option selected value="semua">
 									Semua Bulan
@@ -48,11 +52,6 @@
 								<icon name="search-icon"></icon>
 							</a>
 						</div>
-						<img
-							class="absolute top-0 w-72 right-0 transform -translate-y-16"
-							src="/images/print.svg"
-							alt=""
-						/>
 					</div>
 				</div>
 			</div>
@@ -64,7 +63,6 @@
 import MainLayout from "@/Layouts/MainLayout";
 import months from "@/Helper/month.js";
 import Icon from "@/Components/Icon";
-import axios from "axios";
 
 export default {
 	layout: MainLayout,

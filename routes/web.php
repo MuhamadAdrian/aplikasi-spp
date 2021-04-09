@@ -41,7 +41,9 @@ Route::middleware(['auth', 'verified', 'authadmin'])->group(function () {
     
     Route::get('/', [HomeController::class, 'index'])->name('dashboard');
     
-    Route::resource('data-siswa', SiswaController::class, )->names([
+    Route::resource('data-siswa', SiswaController::class, )
+    ->except(['show'])
+    ->names([
         'index' => 'siswa',
         'create' => 'siswa.tambah',
         'store' => 'siswa.store',
@@ -60,7 +62,9 @@ Route::middleware(['auth', 'verified', 'authadmin'])->group(function () {
         'show' => 'kelas.show'
     ]);
     
-    Route::resource('data-spp', SppController::class)->names([
+    Route::resource('data-spp', SppController::class)
+    ->except(['show'])
+    ->names([
         'index' => 'spp',
         'create' => 'spp.tambah',
         'store' => 'spp.store',
@@ -69,7 +73,9 @@ Route::middleware(['auth', 'verified', 'authadmin'])->group(function () {
         'update' => 'spp.update'
     ]);
 
-    Route::resource('data-petugas', PetugasController::class)->names([
+    Route::resource('data-petugas', PetugasController::class)
+    ->except(['show'])
+    ->names([
         'index' => 'petugas',
         'create' => 'petugas.tambah',
         'store' => 'petugas.store',
@@ -78,7 +84,9 @@ Route::middleware(['auth', 'verified', 'authadmin'])->group(function () {
         'update' => 'petugas.update'
     ]);
 
-    Route::resource('entri-transaksi-pembayaran', PembayaranController::class)->names([
+    Route::resource('entri-transaksi-pembayaran', PembayaranController::class)
+    ->except(['show', 'edit'])
+    ->names([
         'index' => 'pembayaran',
         'create' => 'pembayaran.tambah',
         'store' => 'pembayaran.store',
@@ -86,7 +94,9 @@ Route::middleware(['auth', 'verified', 'authadmin'])->group(function () {
         'update' => 'pembayaran.update'
     ]);
 
-    Route::resource('histori-pembayaran', HistoriController::class)->names([
+    Route::resource('histori-pembayaran', HistoriController::class)
+    ->except(['create', 'update', 'edit', 'store'])
+    ->names([
         'index' => 'histori',
         'show' => 'histori.show',
         'destroy' => 'histori.destroy'

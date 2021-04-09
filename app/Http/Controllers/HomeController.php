@@ -22,7 +22,10 @@ class HomeController extends Controller
             'data_spp' => DB::table('spp')->orderByDesc('tahun')->limit(7)->get(),
             'kelas' => Kelas::withCount('siswa')->get(),
             'histori' => $this->getPembayaranTerakhir(),
-            'pemasukan' => ['bulan' => $this->getPemasukanBulanIni(), 'tahun' => $this->getPemasukanTahunIni()],
+            'pemasukan' => [
+                'bulan' => $this->getPemasukanBulanIni(), 
+                'tahun' => $this->getPemasukanTahunIni()
+            ],
             'data_transaksi_per_bulan' => $this->getJumlahTransaksiPerBulan()
             
         ]);

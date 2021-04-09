@@ -2,10 +2,12 @@
 	<div class="py-12">
 		<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 			<div v-if="$page.props.auth.user.level" class="information">
-				<h1 class="text-2xl font-bold ml-3">
+				<h1 class="text-2xl font-bold ml-3 dark:text-gray-400">
 					Detail Histori Pembayaran
 				</h1>
-				<div class="bg-white p-5 rounded-md shadow-md mt-5">
+				<div
+					class="bg-white dark:bg-gray-800 bg-color-transition dark:text-gray-300 p-5 rounded-md shadow-md mt-5"
+				>
 					<table class="table-auto w-full mx-2">
 						<tr class="h-10">
 							<td class="font-semibold">Nama</td>
@@ -68,7 +70,7 @@
 						v-if="$page.props.auth.user.level == 'admin'"
 						as="button"
 						:href="route('siswa', { search: siswa.nisn })"
-						class="hover:bg-indigo-50 transition-colors duration-200 text-indigo-600 ml-auto block mt-5 text-sm py-2 px-3 rounded-md"
+						class="hover:bg-indigo-50 transition-colors duration-200 dark:text-indigo-400 dark:hover:bg-gray-700 text-indigo-600 ml-auto block mt-5 text-sm py-2 px-3 rounded-md"
 						>Ke Data Siswa</inertia-link
 					>
 				</div>
@@ -79,7 +81,9 @@
 				Histori Pembayaran Siswa
 			</h2>
 			<!-- desktop -->
-			<div class="bg-white p-5 rounded-md shadow-md mt-5">
+			<div
+				class="bg-white dark:bg-gray-800 bg-color-transition dark:text-gray-300 p-5 rounded-md shadow-md mt-5"
+			>
 				<div
 					class="flex flex-col md:flex-row md:items-center justify-between mb-3"
 				>
@@ -96,7 +100,7 @@
 						required
 						v-model="selected_tahun"
 						@change="filterHandler"
-						class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+						class="dark:focus:border-indigo-500 dark:focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 bg-color-transition dark:text-gray-300 block border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
 					>
 						<option selected value="semua">Semua Tahun</option>
 						<option

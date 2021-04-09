@@ -1,7 +1,7 @@
 <template>
 	<button
 		@click="toggleSideBar"
-		class="md:block hidden hover:bg-gray-100 mtext-black bg-white p-4 rounded-full"
+		class="md:block hidden hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-white mtext-black p-4 rounded-full"
 	>
 		<svg
 			ref="anu"

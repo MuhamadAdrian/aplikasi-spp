@@ -2,10 +2,12 @@
 	<div>
 		<div class="py-12">
 			<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-				<h1 class="text-2xl font-bold ml-3">Histori Pembayaran</h1>
+				<h1 class="text-2xl font-bold ml-3 dark:text-gray-400">
+					Histori Pembayaran
+				</h1>
 
 				<div
-					class="bg-white p-5 rounded-md shadow-md md:inline-block block mt-5"
+					class="bg-white dark:bg-gray-800 p-5 rounded-md shadow-md md:inline-block block mt-5"
 				>
 					<form @submit.prevent="search">
 						<div
@@ -15,7 +17,7 @@
 								id="nisn"
 								type="text"
 								placeholder="Cari Histori dengan NISN"
-								class="border-gray-300 md:w-72 w-full focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+								class="dark:focus:border-indigo-500 dark:focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 bg-color-transition dark:text-gray-300 block border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
 								v-model="nisn"
 								autocomplete="nisn"
 								name="nisn"
@@ -23,7 +25,7 @@
 							<select
 								required
 								v-model="selected_tahun"
-								class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+								class="dark:focus:border-indigo-500 dark:focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 bg-color-transition dark:text-gray-300 block border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
 							>
 								<option selected value="semua">
 									Semua Tahun
@@ -38,7 +40,7 @@
 							</select>
 							<button
 								type="submit"
-								class="bg-indigo-400 rounded-md hover:bg-indigo-500 transition-colors duration-200 p-3 text-white"
+								class="bg-indigo-400 rounded-md dark:bg-indigo-500 dark:hover:bg-indigo-600 hover:bg-indigo-500 transition-colors duration-200 p-3 text-white"
 							>
 								<icon name="search-icon"></icon>
 							</button>
@@ -47,7 +49,7 @@
 				</div>
 				<div
 					v-if="histori"
-					class="bg-white p-5 rounded-md shadow-md mt-5"
+					class="bg-white dark:bg-gray-800 dark:text-gray-300 bg-color-transition p-5 rounded-md shadow-md mt-5"
 				>
 					<!-- table -->
 					<table-data :data="histori"></table-data>

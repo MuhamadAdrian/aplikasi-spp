@@ -25,7 +25,7 @@ class SiswaFactory extends Factory
             'nisn' => $this->faker->unique()->randomNumber(9),
             'nis' => $this->faker->unique()->randomNumber(8),
             'nama' => $this->faker->firstName,
-            'id_kelas' => $this->faker->numberBetween(1, 2),
+            'id_kelas' => 1,//$this->faker->numberBetween(1, 2),
             'alamat' => $this->faker->address,
             'no_telp' => '0831' . $this->faker->randomNumber(8),
             'id_spp' => 1,//$this->faker->numberBetween(1, 2),

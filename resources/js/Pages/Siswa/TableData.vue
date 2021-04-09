@@ -14,7 +14,7 @@
 			<tr
 				v-for="(siswa, index) in data.data"
 				:key="index"
-				class="border-b border-gray-300 hover:bg-gray-50 transition-colors duration-200 md:table-row flex flex-col py-4"
+				class="border-b border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 md:table-row flex flex-col py-4"
 			>
 				<td class="font-bold">
 					<span class="font-semibold md:hidden"># </span

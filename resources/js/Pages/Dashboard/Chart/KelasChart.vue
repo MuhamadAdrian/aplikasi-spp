@@ -23,6 +23,7 @@ export default {
 		options: {
 			chart: {
 				type: "polarArea",
+				foreColor: "#6E8192",
 			},
 			labels: [],
 			stroke: {
@@ -30,7 +31,7 @@ export default {
 				colors: undefined,
 			},
 			fill: {
-				opacity: 1,
+				opacity: 0.98,
 			},
 			plotOptions: {
 				polarArea: {
@@ -38,7 +39,7 @@ export default {
 						strokeWidth: 0,
 					},
 					spokes: {
-						strokeWidth: 0,
+						strokeWidth: 1,
 					},
 				},
 			},

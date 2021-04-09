@@ -3,7 +3,7 @@
 		<aside
 			@mouseenter="mouseEnter()"
 			ref="sidebar"
-			class="fixed top-0 left-0 bg-white transition-all duration-300 min-h-screen h-full shadow-xl"
+			class="fixed top-0 left-0 bg-white dark:bg-gray-800 transition-all duration-200 min-h-screen h-full shadow-xl"
 			:class="[!hiden ? 'md:w-72 w-4/5' : 'md:w-20 w-0']"
 		>
 			<div class="p-4 flex items-center">
@@ -13,7 +13,7 @@
 				<fade-slide>
 					<h1
 						v-if="!hiden"
-						class="font-semibold text-lg ml-2 whitespace-nowrap"
+						class="font-semibold text-lg ml-2 whitespace-nowrap dark:text-gray-100"
 					>
 						Aplikasi SPP
 					</h1>

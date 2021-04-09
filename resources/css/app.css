@@ -47,4 +47,20 @@ input, button, textarea{
     background: #6d7aee; 
   }
 
+.slide-enter-active {
+	transition: all 0.3s ease;
+}
+.slide-leave-active {
+	transition: all 0.3s cubic-bezier(.74,0,.4,1);
+}
+.slide-enter-from, .slide-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+	transform: translateX(10px);
+	opacity: 0;
+}
+
+.bg-color-transition{
+    @apply transition-colors duration-150
+}
+
 

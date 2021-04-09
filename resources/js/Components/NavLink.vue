@@ -43,8 +43,8 @@ export default {
 	computed: {
 		classes() {
 			return this.active
-				? "bg-gray-50 text-white text-indigo-600"
-				: "hover:bg-gray-50 text-gray-600";
+				? "bg-gray-50 text-indigo-400 dark:bg-gray-700"
+				: "hover:bg-gray-50 text-gray-600 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200";
 		},
 	},
 

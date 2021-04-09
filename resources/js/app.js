@@ -23,4 +23,4 @@ app.mixin({ methods: { route } }).use(InertiaPlugin).mount(el);
 
 app.use(VueApexCharts);
 
-InertiaProgress.init({ color: "#4B5563" });
+InertiaProgress.init({ color: "#6666EE" });

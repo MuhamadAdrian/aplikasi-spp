@@ -13,7 +13,7 @@
 				<tr
 					v-for="(kelas, index) in data.data"
 					:key="index"
-					class="border-b border-gray-300 hover:bg-gray-50 transition-colors duration-200"
+					class="border-b border-gray-300 hover:bg-gray-50 dark:border-gray-700 dark:hover:bg-gray-700 transition-colors duration-200"
 				>
 					<td class="font-bold">{{ index + number }}</td>
 					<td>{{ kelas.nama_kelas }}</td>

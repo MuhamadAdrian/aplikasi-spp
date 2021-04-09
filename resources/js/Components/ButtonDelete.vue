@@ -10,7 +10,7 @@
 		<fade-up>
 			<div
 				v-if="showConfirm"
-				class="absolute top-0 right-0 transform -translate-x-5 -translate-y-5 bg-white justify-center flex items-center text-xs shadow p-1 rounded-md"
+				class="absolute top-0 right-0 transform -translate-x-5 -translate-y-5 bg-white dark:bg-gray-600 dark:text-gray-200 justify-center flex items-center text-xs shadow p-1 rounded-md"
 			>
 				<p class="text-xs whitespace-nowrap mx-3">
 					Anda Yakin ingin menghapusnya ?

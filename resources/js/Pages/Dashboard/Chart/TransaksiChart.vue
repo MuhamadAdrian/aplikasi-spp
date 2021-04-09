@@ -40,6 +40,7 @@ export default {
 			chart: {
 				height: 350,
 				type: "line",
+				foreColor: "#6E8192",
 			},
 
 			colors: ["#F44336", "#9C27B0"],
@@ -68,6 +69,9 @@ export default {
 				{
 					title: {
 						text: "Pemasukan",
+					},
+					style: {
+						colors: ["#6E8192"],
 					},
 				},
 				{

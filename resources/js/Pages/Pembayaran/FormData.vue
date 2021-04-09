@@ -1,10 +1,7 @@
 <template>
 	<form @submit.prevent="submit()">
 		<div class="flex items-center justify-between mb-5">
-			<h1 v-if="edit" class="text-lg font-bold">
-				<span>Edit Data Spp</span>
-			</h1>
-			<h1 v-else class="text-lg font-bold">
+			<h1 class="text-lg font-bold dark:text-gray-300">
 				<span>Entri Pembayaran</span>
 			</h1>
 			<form-button
@@ -35,7 +32,7 @@
 					:class="{
 						'border-red-500': form.errors.bulan_bayar,
 					}"
-					class="w-full block mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+					class="w-full dark:focus:border-indigo-500 dark:focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 bg-color-transition dark:text-gray-300 block mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
 				>
 					<option disabled hidden :value="null">Pilih Bulan</option>
 					<option
@@ -80,7 +77,7 @@
 						},
 						{ 'text-gray-400': data.spp },
 					]"
-					class="w-full block mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+					class="w-full dark:focus:border-indigo-500 dark:focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 bg-color-transition dark:text-gray-300 block mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
 				>
 					<option selected disabled hidden :value="null">
 						Pilih Spp
@@ -210,14 +207,9 @@ export default {
 
 	methods: {
 		submit() {
-			if (this.edit && this.data) {
-				//console.log(this.data);
-				this.form.put(this.route("pemabayaran.update", this.data.id));
-			} else {
-				this.form.post(this.route("pembayaran.store"), {
-					preserveScroll: true,
-				});
-			}
+			this.form.post(this.route("pembayaran.store"), {
+				preserveScroll: true,
+			});
 		},
 	},
 };

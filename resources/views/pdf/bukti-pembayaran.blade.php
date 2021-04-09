@@ -63,7 +63,7 @@
                 <td>{{ $histori->siswa->nama }}</td>
             </tr>
             <tr>
-                <td>NIS</td>
+                <td>NISN</td>
                 <td>:</td>
                 <td>{{ $histori->siswa->nisn }}</td>
             </tr>

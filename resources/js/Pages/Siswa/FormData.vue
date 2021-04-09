@@ -1,14 +1,14 @@
 <template>
 	<form @submit.prevent="submit()">
 		<div class="flex items-center justify-between mb-5">
-			<h1 v-if="edit" class="text-lg font-bold">
+			<h1 v-if="edit" class="text-lg font-bold dark:text-gray-300">
 				<span>Edit Data Siswa</span>
 			</h1>
-			<h1 v-else class="text-lg font-bold">
+			<h1 v-else class="text-lg font-bold dark:text-gray-300">
 				<span>Tambah Data Siswa</span>
 			</h1>
 			<form-button
-				class="ml-4 bg-indigo-400"
+				class="ml-4"
 				:class="{ 'opacity-25': form.processing }"
 				:disabled="form.processing"
 			>
@@ -107,7 +107,7 @@
 					:class="{
 						'border-red-500': form.errors.id_kelas,
 					}"
-					class="w-full block mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+					class="w-full dark:focus:border-indigo-500 dark:focus:ring-indigo-500 dark:bg-gray-700 dark:border-gray-600 bg-color-transition dark:text-gray-300 block mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
 				>
 					<option
 						:selected="id_kelas == null"
@@ -145,7 +145,7 @@
 					:class="{
 						'border-red-500': form.errors.id_spp,
 					}"
-					class="w-full block mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+					class="w-full dark:bg-gray-700 dark:focus:border-indigo-500 dark:focus:ring-indigo-500 dark:border-gray-600 bg-color-transition dark:text-gray-300 block mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
 				>
 					<option selected disabled hidden :value="null">
 						Pilih Spp
@@ -181,7 +181,7 @@
 					:class="{
 						'border-red-500': form.errors.alamat,
 					}"
-					class="w-full block mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+					class="w-full dark:bg-gray-700 dark:focus:border-indigo-500 dark:focus:ring-indigo-500 dark:border-gray-600 bg-color-transition dark:text-gray-300 block mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
 				></textarea>
 				<form-error
 					class="mt-3"

@@ -2,7 +2,7 @@
 	<div>
 		<navbar
 			@hamburgerClick="hamburgerClicked"
-			class="transition-all duration-300"
+			class="transition-all duration-200"
 			:class="[hideSideBar ? 'md:ml-72 ml-4/5' : 'md:ml-20 ml-0']"
 		></navbar>
 		<side-bar class="md:block hidden" :hide="hideSideBar"></side-bar>
@@ -19,7 +19,7 @@
 		></hamburger-mobile>
 		<!-- Mobile -->
 		<main
-			class="transition-all duration-300 bg-gray-50 min-h-screen md:px-20 h-full bg text-gray-600"
+			class="transition-all dark:bg-gray-900 duration-200 bg-gray-50 min-h-screen md:px-20 h-full text-gray-600"
 			:class="[hideSideBar ? 'md:ml-72 ml-4/5' : 'md:ml-20 ml-0']"
 		>
 			<slot></slot>
@@ -91,6 +91,12 @@ export default {
 				this.hideSideBarMobile = !this.hideSideBarMobile;
 			}
 		});
+
+		if (JSON.parse(localStorage.getItem("dark")) == true) {
+			document.documentElement.classList.add("dark");
+		} else {
+			document.documentElement.classList.remove("dark");
+		}
 	},
 
 	beforeUnmount() {

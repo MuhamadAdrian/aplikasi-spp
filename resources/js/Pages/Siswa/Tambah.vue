@@ -1,7 +1,9 @@
 <template>
 	<div class="py-12">
 		<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-			<div class="bg-white md:p-10 p-4 rounded-md shadow-md">
+			<div
+				class="bg-white dark:bg-gray-800 bg-color-transition md:p-10 p-4 rounded-md shadow-md"
+			>
 				<form-data
 					:kelas="kelas"
 					:spp="spp"
