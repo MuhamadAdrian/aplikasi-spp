@@ -16,8 +16,8 @@ class PembayaranController extends Controller
     {
         return Inertia::render('Pembayaran/Index', [
             'siswa' => Siswa::when($request->search, function($query, $search){
-                //$query->where('nama', 'LIKE', '%'.$search.'%') // for mysql
-                $query->where('nama', 'ILIKE', '%'.$search.'%') // for postgress
+                $query->where('nama', 'LIKE', '%'.$search.'%') // for mysql
+                //$query->where('nama', 'ILIKE', '%'.$search.'%') // for postgress
                 ->orWhere('nisn', 'LIKE', '%'.$search.'%')
                 ->orWhere('nis', 'LIKE', '%'.$search.'%');
             })->with('kelas')->latest()->paginate(5)
