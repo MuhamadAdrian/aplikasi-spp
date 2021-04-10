@@ -15,8 +15,8 @@ class KelasController extends Controller
     {
         return Inertia::render('Kelas/Index', [
             'kelas' => Kelas::when($request->search, function($query, $search){
-                $query->where('nama_kelas', 'LIKE', '%'.$search.'%'); //for mysql
-                //$query->where('nama_kelas', 'ILIKE', '%'.$search.'%'); //for postgress
+                //$query->where('nama_kelas', 'LIKE', '%'.$search.'%'); //for mysql
+                $query->where('nama_kelas', 'ILIKE', '%'.$search.'%'); //for postgress
             })->paginate(10)
         ]);
     }
@@ -59,8 +59,8 @@ class KelasController extends Controller
         {
             $detail->setRelation('siswa', 
                 $detail->siswa()->with('kelas')
-                //->where('nama', 'ILIKE', '%'.$request->search.'%') // for postgress
-                ->where('nama', 'LIKE', '%'.$request->search.'%') // for mysql
+                ->where('nama', 'ILIKE', '%'.$request->search.'%') // for postgress
+                //->where('nama', 'LIKE', '%'.$request->search.'%') // for mysql
                 ->orWhere('nisn', 'LIKE', '%'.$request->search.'%')
                 ->orWhere('nis', 'LIKE', '%'.$request->search.'%')
                 ->paginate(10)
