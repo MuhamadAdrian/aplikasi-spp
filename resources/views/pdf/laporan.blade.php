@@ -88,7 +88,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>Tanggal</th>
+                    <th>Tanggal Input</th>
                     <th>Nama</th>
                     <th>Kelas</th>
                     <th>SPP</th>

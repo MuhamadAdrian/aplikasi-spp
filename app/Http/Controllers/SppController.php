@@ -17,8 +17,7 @@ class SppController extends Controller
     {
         return Inertia::render('Spp/Index', [
             'spp' => Spp::when($request->search, function($query, $search){
-                $query->where('tahun', 'LIKE', '%'.$search.'%');//for mysql
-                $query->where('tahun', 'ILIKE', '%'.$search.'%');//for postgress
+                $query->where('tahun', 'LIKE', '%'.$search.'%');
             })->orderBy('tahun', 'desc')->paginate(10)
         ]);
     }

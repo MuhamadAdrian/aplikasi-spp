@@ -37,12 +37,10 @@ class SiswaController extends Controller
     {
         return Inertia::render('Siswa/Index', [
             'siswa' => Siswa::when($request->search, function($query, $search){
-                //$query->where('nama', 'LIKE', '%'.$search.'%')//for mysql
-                //->orWhere('nisn', 'LIKE', '%'.$search.'%')
-                //->orWhere('nis', 'LIKE', '%'.$search.'%');
                 $query->where('nama', 'ILIKE', '%'.$search.'%')//for postgress
-                ->orWhere('nisn', 'ILIKE', '%'.$search.'%')
-                ->orWhere('nis', 'ILIKE', '%'.$search.'%');
+                //$query->where('nama', 'LIKE', '%'.$search.'%')//for mysql
+                ->orWhere('nisn', 'LIKE', '%'.$search.'%')
+                ->orWhere('nis', 'LIKE', '%'.$search.'%');
             })->with('kelas')->latest()->paginate(10)
         ]);
     }
