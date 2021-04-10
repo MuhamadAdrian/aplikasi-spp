@@ -79,6 +79,7 @@ class PembayaranController extends Controller
             'id_spp' => $request->id_spp,
             'jumlah_dibayar' => $request->jumlah_bayar,
             'jumlah_masuk' => $request->jumlah_masuk,
+            'tgl_bayar' => now(), // for postgress sql
             'status' => $request->jumlah_masuk == $request->jumlah_bayar ? 'lunas' : 'belum lunas'
         ]);
 
@@ -87,24 +88,13 @@ class PembayaranController extends Controller
             'success' => true
         ]);
     }
-    
-
-    public function show($id)
-    {
-
-    }
-    
-
-    public function edit($id)
-    {
-
-    }
         
 
     public function update(Request $request, $id)
     {
         Pembayaran::where('id', $id)->update([
             'jumlah_masuk' => $request->jumlah_dibayar,
+            'tgl_bayar' => now(), // for postgress sql
             'status' => 'lunas'
         ]);
 
@@ -112,12 +102,6 @@ class PembayaranController extends Controller
             'message' => 'Pelunasan Berhasil',
             'success' => true
         ]);
-    }
-    
-
-    public function destroy($id)
-    {
-       
     }
 }
 
