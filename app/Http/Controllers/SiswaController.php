@@ -37,9 +37,12 @@ class SiswaController extends Controller
     {
         return Inertia::render('Siswa/Index', [
             'siswa' => Siswa::when($request->search, function($query, $search){
-                $query->where('nama', 'LIKE', '%'.$search.'%')
-                ->orWhere('nisn', 'LIKE', '%'.$search.'%')
-                ->orWhere('nis', 'LIKE', '%'.$search.'%');
+                //$query->where('nama', 'LIKE', '%'.$search.'%')//for mysql
+                //->orWhere('nisn', 'LIKE', '%'.$search.'%')
+                //->orWhere('nis', 'LIKE', '%'.$search.'%');
+                $query->where('nama', 'ILIKE', '%'.$search.'%')//for postgress
+                ->orWhere('nisn', 'ILIKE', '%'.$search.'%')
+                ->orWhere('nis', 'ILIKE', '%'.$search.'%');
             })->with('kelas')->latest()->paginate(10)
         ]);
     }
@@ -102,17 +105,6 @@ class SiswaController extends Controller
             'success' => true
         ]);
 
-    }
-    
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($nisn)
-    {
-        
     }
     
     /**
