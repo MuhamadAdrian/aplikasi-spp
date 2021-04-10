@@ -20,8 +20,8 @@ class PetugasController extends Controller
     {
         return Inertia::render('Petugas/Index', [
             'petugas' => Petugas::when($request->search, function($query, $search){
-                $query->where('nama_petugas', 'LIKE', '%'.$search.'%');//for mysql
-                //$query->where('nama_petugas', 'ILIKE', '%'.$search.'%');//for postgress
+                //$query->where('nama_petugas', 'LIKE', '%'.$search.'%');//for mysql
+                $query->where('nama_petugas', 'ILIKE', '%'.$search.'%');//for postgress
             })->paginate(10)
         ]);
     }

@@ -15,8 +15,8 @@ class KelasController extends Controller
     {
         return Inertia::render('Kelas/Index', [
             'kelas' => Kelas::when($request->search, function($query, $search){
-                $query->where('nama_kelas', 'LIKE', '%'.$search.'%'); //for mysql
-                //$query->where('nama_kelas', 'ILIKE', '%'.$search.'%'); //for postgress
+                //$query->where('nama_kelas', 'LIKE', '%'.$search.'%'); //for mysql
+                $query->where('nama_kelas', 'ILIKE', '%'.$search.'%'); //for postgress
             })->paginate(10)
         ]);
     }

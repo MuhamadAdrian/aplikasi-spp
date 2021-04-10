@@ -5,6 +5,16 @@
 			class="transition-all duration-200"
 			:class="[hideSideBar ? 'md:ml-72 ml-4/5' : 'md:ml-20 ml-0']"
 		></navbar>
+		<div class="fixed top-0 right-0 p-4 z-50 md:hidden">
+			<div
+				class="bg-white dark:bg-gray-700 dark:text-gray-300 py-2 px-3 rounded text-xs shadow"
+			>
+				<p v-if="$page.props.auth.user.level">
+					{{ $page.props.auth.user.nama_petugas }}
+				</p>
+				<p v-else>{{ $page.props.auth.user.nama }}</p>
+			</div>
+		</div>
 		<side-bar class="md:block hidden" :hide="hideSideBar"></side-bar>
 		<!-- Mobile -->
 		<side-bar-mobile
