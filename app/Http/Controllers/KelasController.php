@@ -59,8 +59,8 @@ class KelasController extends Controller
         {
             $detail->setRelation('siswa', 
                 $detail->siswa()->with('kelas')
-                //->where('nama', 'ILIKE', '%'.$request->search.'%') // for postgress
-                ->where('nama', 'LIKE', '%'.$request->search.'%') // for mysql
+                ->where('nama', 'ILIKE', '%'.$request->search.'%') // for postgress
+                //->where('nama', 'LIKE', '%'.$request->search.'%') // for mysql
                 ->orWhere('nisn', 'LIKE', '%'.$request->search.'%')
                 ->orWhere('nis', 'LIKE', '%'.$request->search.'%')
                 ->paginate(10)
