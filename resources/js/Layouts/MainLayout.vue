@@ -69,38 +69,14 @@ export default {
 			this.buttonPressed = true;
 			this.hideSideBarMobile = !this.hideSideBarMobile;
 		},
-
-		onResize() {
-			if (window.innerWidth < 768) {
-				this.isMobile = true;
-			} else {
-				this.isMobile = false;
-			}
-		},
-	},
-
-	created() {
-		this.onResize();
-		window.addEventListener("resize", this.onResize);
 	},
 
 	mounted() {
-		Inertia.on("success", (event) => {
-			if (this.isMobile) {
-				this.buttonPressed = true;
-				this.hideSideBarMobile = !this.hideSideBarMobile;
-			}
-		});
-
 		if (JSON.parse(localStorage.getItem("dark")) == true) {
 			document.documentElement.classList.add("dark");
 		} else {
 			document.documentElement.classList.remove("dark");
 		}
-	},
-
-	beforeUnmount() {
-		window.removeEventListener("resize", this.onResize);
 	},
 };
 </script>

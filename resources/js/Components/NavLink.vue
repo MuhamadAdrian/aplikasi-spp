@@ -33,6 +33,8 @@ export default {
 		"isSidebarHidden",
 	],
 
+	emits: ["linkClicked"],
+
 	data() {
 		return {
 			animationShowed: false,
@@ -51,6 +53,7 @@ export default {
 	methods: {
 		playAnimation() {
 			this.animationShowed = true;
+			this.$emit("linkClicked");
 		},
 
 		mouseEnter() {
