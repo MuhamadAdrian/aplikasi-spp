@@ -46,6 +46,12 @@ class HistoriController extends Controller
     {   
         $pembayaran = null;
 
+        if (auth()->user()->role == 'siswa') {
+            if ($nisn != auth()->user()->siswa->nisn) {
+                return back();
+            }
+        }
+
         if ($request->tahun=="semua") {
            $pembayaran = $this->pembayaran->where('nisn', $nisn)->paginate(10);
             
